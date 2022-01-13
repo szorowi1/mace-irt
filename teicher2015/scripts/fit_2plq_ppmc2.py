@@ -2,6 +2,7 @@ import os, sys
 import numpy as np
 from os.path import dirname
 from pandas import DataFrame, read_csv
+from arviz import hdi
 from numba import njit
 from tqdm import tqdm
 ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
@@ -111,30 +112,42 @@ for i in tqdm(range(n_samp)):
     ## Compute correlations.
     SKr[i] = mace.pivot_table('y_hat', 'subject', 'item').corr(sokalmichener).values[indices]
 
+## Compute lower/upper bounds of null distribution.
+lb, ub = np.apply_along_axis(hdi, 0, SKr, hdi_prob=0.95)
+    
 ## Compute pvals.
 pvals = (SK >= SKr).mean(axis=0)
     
 ## Compute average correlations.
 ESK = np.mean(SKr, axis=0)
     
+## Convert to DataFrame.
+df = DataFrame(dict(
+    k1 = indices[0].astype(int),
+    k2 = indices[1].astype(int),
+    sk = SK,
+    lb = lb, 
+    ub = ub,
+    pval = pvals
+))
+
 ## Compute standardized root mean square residual.
 SRMR  = srmr(SK, ESK)
 SRMRr = np.array([srmr(u, ESK) for u in SKr])
 
+## Compute lower/upper bounds of null distribution.
+lb, ub = hdi(SRMRr, hdi_prob=0.95)
+
 ## Compute ppp-val.
 pppval = (SRMR >= SRMRr).mean()
-    
-## Convert to DataFrame.
-SK = DataFrame(dict(
-    k1 = indices[0].astype(int),
-    k2 = indices[1].astype(int),
-    sk = SK.round(6),
-    pval = pvals
-))
 
 ## Insert summary row.
-SK = SK.append({'k1': 0, 'k2': 0, 'sk': np.round(SRMR, 6), 'pval': pppval}, ignore_index=True)
-SK = SK.sort_values(['k1','k2'])
+df = df.append({'k1': 0, 'k2': 0, 'sk': np.round(SRMR, 6), 'lb':lb, 'ub':ub, 'pval': pppval}, ignore_index=True)
+df = df.sort_values(['k1','k2'])
+
+## Format data.
+df[['k1','k2']] = df[['k1','k2']].astype(int)
+df[['sk','lb','ub','pval']] = df[['sk','lb','ub','pval']].round(6)
 
 ## Save.
-SK.to_csv(os.path.join(ROOT_DIR, 'stan_results', f'{stan_model}_m{q_matrix}_ppmc2.csv'), index=False)
+df.to_csv(os.path.join(ROOT_DIR, 'stan_results', f'{stan_model}_m{q_matrix}_ppmc2.csv'), index=False)
