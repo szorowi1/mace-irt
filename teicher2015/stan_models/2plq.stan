@@ -60,7 +60,7 @@ model {
         mu[n] = inv_logit(alpha[K[n]] * theta[,J[n]] - beta[K[n]]);
     }
     
-    // Accuracy likelihood
+    // Response likelihood
     target += bernoulli_lpmf(Y | mu);
     
     // Priors
