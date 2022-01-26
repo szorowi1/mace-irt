@@ -41,7 +41,7 @@ teicher2015.insert(0, 'study', 'teicher2015')
 
 ## Locate files.
 fdir = os.path.join(ROOT_DIR, 'raw', 'tuominen2022')
-files = sorted([f for f in os.listdir(fdir) if f.endswith('.json')])
+files = sorted([f for f in os.listdir(fdir) if f.endswith('.json') and not 'siblings' in f])
 
 ## Preallocate space.
 tuominen2022 = []
@@ -56,6 +56,22 @@ for f in files:
     ## Gather siblings data.
     demo, = [dd for dd in JSON if dd['trial_type'] == 'survey-demo']
     siblings = int(demo['responses'].get('siblings', 0))
+    
+    ## HACK: integrate siblings survey.
+    sf = os.path.join(fdir, f'{subject}_siblings.json')
+    
+    if os.path.isfile(sf):
+        with open(sf, 'r') as f:
+            siblings, = json.load(f)
+            
+            ## Try to convert response to integer.
+            try: 
+                siblings = int(siblings['response'].get('siblings', 0))   
+                
+            ## Custom data handling.
+            except:
+                lut = {'one': 1}
+                siblings = lut[siblings['response'].get('siblings', 0)]
     
     ## Gather MACE data.
     mace = [dd for dd in JSON if 'survey' in dd and dd['survey']=='mace']

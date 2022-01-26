@@ -58,7 +58,7 @@ teicher2015.insert(0, 'study', 'teicher2015')
 
 ## Locate files.
 fdir = os.path.join(ROOT_DIR, 'raw', 'tuominen2022')
-files = sorted([f for f in os.listdir(fdir) if f.endswith('.json')])
+files = sorted([f for f in os.listdir(fdir) if f.endswith('.json') and not 'siblings' in f])
 
 ## Preallocate space.
 tuominen2022 = []
@@ -80,6 +80,22 @@ for f in files:
     
     ## Format data.
     dd['siblings'] = int(dd['siblings']) if 'siblings' in dd else np.nan
+    
+    ## HACK: integrate siblings survey.
+    sf = os.path.join(fdir, f'{subject}_siblings.json')
+    
+    if os.path.isfile(sf):
+        with open(sf, 'r') as f:
+            siblings, = json.load(f)
+            
+            ## Try to convert response to integer.
+            try: 
+                dd['siblings'] = int(siblings['response'].get('siblings', np.nan))   
+                
+            ## Custom data handling.
+            except:
+                lut = {'one': 1}
+                dd['siblings'] = lut[siblings['response'].get('siblings', np.nan)]
     
     ## Gather infrequency items.
     infreq = 0
