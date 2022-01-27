@@ -55,7 +55,7 @@ for f in files:
     
     ## Gather siblings data.
     demo, = [dd for dd in JSON if dd['trial_type'] == 'survey-demo']
-    siblings = int(demo['responses'].get('siblings', 0))
+    siblings = int(demo['responses'].get('siblings', 99))
     
     ## HACK: integrate siblings survey.
     sf = os.path.join(fdir, f'{subject}_siblings.json')
@@ -66,12 +66,12 @@ for f in files:
             
             ## Try to convert response to integer.
             try: 
-                siblings = int(siblings['response'].get('siblings', 0))   
+                siblings = int(siblings['response'].get('siblings', 99))   
                 
             ## Custom data handling.
             except:
                 lut = {'one': 1}
-                siblings = lut[siblings['response'].get('siblings', 0)]
+                siblings = lut[siblings['response'].get('siblings', 99)]
     
     ## Gather MACE data.
     mace = [dd for dd in JSON if 'survey' in dd and dd['survey']=='mace']
