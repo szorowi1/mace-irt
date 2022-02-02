@@ -61,7 +61,7 @@ M = Q.shape[-1]
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## Load samples.
-f = os.path.join(ROOT_DIR, 'stan_results', f'{stan_model}_m{q_matrix}.tsv.gz')
+f = os.path.join(ROOT_DIR, 'stan_results', 'joint', f'{stan_model}_m{q_matrix}.tsv.gz')
 samples = read_csv(f, sep='\t', compression='gzip')
 n_samp = len(samples)
 
@@ -117,4 +117,4 @@ NC = DataFrame(NC)
 
 ## Save.
 NC.index = NC.index.rename('sample')
-NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', f'{stan_model}_m{q_matrix}_ppmc1.csv'))
+NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', 'joint', f'{stan_model}_m{q_matrix}_ppmc1.csv'))

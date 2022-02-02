@@ -32,7 +32,7 @@ covariates = read_csv(os.path.join(ROOT_DIR, 'data', 'covariates.csv')).query('i
 mace = mace.loc[mace.subject.isin(covariates.subject)]
 
 ## Prepare MACE data.
-mace = mace.dropna()
+mace = mace[mace.response.notnull()]
 
 ## Load design data.
 design = read_csv(os.path.join(ROOT_DIR, 'data', 'design.csv'), index_col=0)
