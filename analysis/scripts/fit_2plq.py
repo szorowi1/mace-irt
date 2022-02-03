@@ -11,7 +11,8 @@ ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
 
 ## I/O parameters.
 stan_model = '2plq'
-q_matrix = int(sys.argv[1])
+study = sys.argv[1]
+q_matrix = int(sys.argv[2])
 
 ## Sampling parameters.
 iter_warmup   = 3000
@@ -30,6 +31,10 @@ mace = read_csv(os.path.join(ROOT_DIR, 'data', 'mace.csv'))
 ## Apply rejections.
 covariates = read_csv(os.path.join(ROOT_DIR, 'data', 'covariates.csv')).query('infreq <= 0.5')
 mace = mace.loc[mace.subject.isin(covariates.subject)]
+
+## Restrict to specified dataset.
+if study == "teicher2015": mace = mace.query('study == "teicher2015"')
+if study == "tuominen2022": mace = mace.query('study == "tuominen2022"')
 
 ## Prepare MACE data.
 mace = mace[mace.response.notnull()]
@@ -81,7 +86,7 @@ StanFit = StanModel.sample(data=dd, chains=chains, iter_warmup=iter_warmup, iter
 print('Saving data.')
     
 ## Define fout.
-fout = os.path.join(ROOT_DIR, 'stan_results', f'{stan_model}_m{q_matrix}')
+fout = os.path.join(ROOT_DIR, 'stan_results', joint, f'{stan_model}_m{q_matrix}')
     
 ## Extract summary and samples.
 samples = StanFit.draws_pd()

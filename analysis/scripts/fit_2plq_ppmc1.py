@@ -12,7 +12,8 @@ ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
 
 ## I/O parameters.
 stan_model = '2plq'
-q_matrix = int(sys.argv[1])
+study = sys.argv[1]
+q_matrix = int(sys.argv[2])
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Load and prepare data.
@@ -25,8 +26,12 @@ mace = read_csv(os.path.join(ROOT_DIR, 'data', 'mace.csv'))
 covariates = read_csv(os.path.join(ROOT_DIR, 'data', 'covariates.csv')).query('infreq <= 0.5')
 mace = mace.loc[mace.subject.isin(covariates.subject)]
 
+## Restrict to specified dataset.
+if study == "teicher2015": mace = mace.query('study == "teicher2015"')
+if study == "tuominen2022": mace = mace.query('study == "tuominen2022"')
+
 ## Prepare MACE data.
-mace = mace.dropna()
+mace = mace[mace.response.notnull()]
 
 ## Load design data.
 design = read_csv(os.path.join(ROOT_DIR, 'data', 'design.csv'), index_col=0)
@@ -61,7 +66,7 @@ M = Q.shape[-1]
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## Load samples.
-f = os.path.join(ROOT_DIR, 'stan_results', 'joint', f'{stan_model}_m{q_matrix}.tsv.gz')
+f = os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}.tsv.gz')
 samples = read_csv(f, sep='\t', compression='gzip')
 n_samp = len(samples)
 
@@ -117,4 +122,4 @@ NC = DataFrame(NC)
 
 ## Save.
 NC.index = NC.index.rename('sample')
-NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', 'joint', f'{stan_model}_m{q_matrix}_ppmc1.csv'))
+NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc1.csv'))
