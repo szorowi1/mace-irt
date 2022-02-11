@@ -89,74 +89,64 @@ def inv_logit(x):
     return 1. / (1 + np.exp(-x))
 
 @njit
-def sokalmichener(u,v):
-    return np.mean(u==v)
-
-@njit
-def srmr(u,v):
-    return np.sqrt(np.mean(np.square(u - v)))
+def smbc(u, v):
+    return (u @ v) / (np.sqrt(u @ u) * np.sqrt(v @ v))
 
 ## Define indices.
 indices = np.tril_indices(mace.item.nunique(), k=-1)
-L = len(indices[0])
-
-## Compute correlations (observed).
-SK = mace.pivot_table('response', 'subject', 'item').corr(sokalmichener).values[indices]
+L = indices[0].size
 
 ## Preallocate space.
-SKr = np.zeros((n_samp, L))
+stats = np.zeros((n_samp, L + 1))
+pvals = np.zeros(L + 1)
 
-## Iterate over samples.
 for i in tqdm(range(n_samp)):
     
     ## Compute linear predictor
-    mu = np.einsum('nd,nd->n',theta[i,J],alpha[i,K]) - beta[i,K]
+    mu = np.einsum('nd,nd->n', theta[i,J], alpha[i,K]) - beta[i,K]
     
     ## Compute p(endorse).
     p = inv_logit(mu)
     
-    ## Simulate data.
-    mace['y_hat'] = np.random.binomial(1, p)
+    ## Compute residuals (observed).
+    mace['r'] = mace.response - p
     
-    ## Compute correlations.
-    SKr[i] = mace.pivot_table('y_hat', 'subject', 'item').corr(sokalmichener).values[indices]
+    ## Compute SMBC (observed).
+    stats[i,1:] = mace.pivot_table('r', 'subject', 'item').corr(smbc).values[indices]
+    
+    ## Compute SGGDM (observed).
+    stats[i,0] = np.abs(stats[i,1:]).mean()
+    
+    ## Compute residuals (replicated).
+    mace['r'] = np.random.binomial(1,p) - p
+    
+    ## Compute SMBC (replicated).
+    SMBCr = mace.pivot_table('r', 'subject', 'item').corr(smbc).values[indices]
+    
+    ## Compute SGGDM (replicated).
+    SGGDMr = np.abs(SMBCr).mean()
+    
+    ## Increment p-values.
+    pvals[1:] += (stats[i,1:] >= SMBCr).astype(float) / n_samp
+    pvals[0] += (stats[i,0] >= SGGDMr).astype(float) / n_samp
+    
+## Compute summary stats.
+mu = stats.mean(axis=0)
+lb, ub = np.apply_along_axis(hdi, 0, stats, hdi_prob=0.95)
 
-## Compute lower/upper bounds of null distribution.
-lb, ub = np.apply_along_axis(hdi, 0, SKr, hdi_prob=0.95)
-    
-## Compute pvals.
-pvals = (SK >= SKr).mean(axis=0)
-    
-## Compute average correlations.
-ESK = np.mean(SKr, axis=0)
-    
 ## Convert to DataFrame.
 df = DataFrame(dict(
-    k1 = indices[0].astype(int),
-    k2 = indices[1].astype(int),
-    sk = SK,
+    k1 = np.append(0, indices[0]),
+    k2 = np.append(0, indices[1]),
+    mu = mu,
     lb = lb, 
     ub = ub,
     pval = pvals
 ))
 
-## Compute standardized root mean square residual.
-SRMR  = srmr(SK, ESK)
-SRMRr = np.array([srmr(u, ESK) for u in SKr])
-
-## Compute lower/upper bounds of null distribution.
-lb, ub = hdi(SRMRr, hdi_prob=0.95)
-
-## Compute ppp-val.
-pppval = (SRMR >= SRMRr).mean()
-
-## Insert summary row.
-df = df.append({'k1': 0, 'k2': 0, 'sk': np.round(SRMR, 6), 'lb':lb, 'ub':ub, 'pval': pppval}, ignore_index=True)
-df = df.sort_values(['k1','k2'])
-
 ## Format data.
 df[['k1','k2']] = df[['k1','k2']].astype(int)
-df[['sk','lb','ub','pval']] = df[['sk','lb','ub','pval']].round(6)
+df[['mu','lb','ub','pval']] = df[['mu','lb','ub','pval']].round(6)
 
 ## Save.
 df.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc2.csv'), index=False)
