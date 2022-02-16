@@ -11,7 +11,7 @@ RAW_DIR = os.path.join(ROOT_DIR, 'raw')
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## Load mapping file.
-mapping = read_csv(os.path.join(ROOT_DIR, 'raw', 'mapping.csv'))
+mapping = read_csv(os.path.join(ROOT_DIR, 'raw', 'mapping.tsv'), sep='\t')
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Teicher & Parigger (2015)
@@ -30,7 +30,7 @@ teicher2015 = teicher2015.melt(var_name='item_id', value_name='response', ignore
 teicher2015 = teicher2015.reset_index().rename(columns={'index':'subject'})
 
 ## Merge with mapping.
-teicher2015 = teicher2015.merge(mapping, on='item_id')
+teicher2015 = teicher2015.merge(mapping[['item','item_id','subscale']], on='item_id')
 
 ## Insert study.
 teicher2015.insert(0, 'study', 'teicher2015')
