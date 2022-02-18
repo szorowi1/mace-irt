@@ -10,7 +10,7 @@ ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## I/O parameters.
-stan_model = '2plq'
+stan_model = 'grmq'
 study = sys.argv[1]
 q_matrix = int(sys.argv[2])
 
@@ -36,23 +36,8 @@ mace = mace.loc[mace.subject.isin(covariates.subject)]
 if study == "teicher2015": mace = mace.query('study == "teicher2015"')
 if study == "tuominen2022": mace = mace.query('study == "tuominen2022"')
 
-## Prepare MACE data.
-mace = mace[mace.response.notnull()]
-
 ## Load design data.
 design = read_csv(os.path.join(ROOT_DIR, 'data', 'design.csv'), index_col=0)
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-### Assemble data for Stan.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-## Define metadata.
-J = np.unique(mace['subject'], return_inverse=True)[-1] + 1
-K = np.unique(mace['item'], return_inverse=True)[-1] + 1
-N = len(J)
-
-## Define response data.
-Y = mace.response.values.astype(int)
 
 ## Define Q-matrix.
 if q_matrix == 1: 
@@ -66,15 +51,63 @@ elif q_matrix == 4:
 else:
     raise ValueError(f'Invalid input: q_matrix == {q_matrix}')
     
-Q = design[cols].values.astype(int)
-M = Q.shape[-1]
+design = design[cols]
+    
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+### Merge dependent items.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+## Define locally dependent items.
+ld = [[7,8], [9,10,11], [13,14], [15,16], [19,20], [21,22,23], [24,25], [33,34,35], [36,37]]
+
+## Convert items to pivot table.
+mace = mace.pivot_table('response', 'subject', 'item')
+
+## Iterate over tuples.
+for ix in ld:
+    
+    ## Sum across items.
+    mace[ix[0]] = mace[ix].sum(axis=1, skipna=False)
+    
+    ## Drop vestigial columns / rows.
+    mace = mace.drop(columns=ix[1:])
+    design = design.drop(index=ix[1:])
+    
+## Unstack data.
+mace = mace.unstack().reset_index(name='response')
+mace = mace.sort_values(['item','subject'])
+
+## Drop missing data.
+mace = mace.dropna()
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+### Assemble data for Stan.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+## Define metadata.
+N = len(mace)
+M = len(design.T)
+K = int(mace.item.nunique())
+J = np.unique(mace.subject, return_inverse=True)[-1] + 1
+
+## Define response data.
+Y = mace.response.values.astype(int) + 1
+    
+## Define Q-matrix.
+Q = design.values.astype(int)
+
+## Define prior counts.
+C = np.row_stack(mace.groupby('item').response.apply(np.bincount, minlength=Y.max()))
+s = np.unique(np.where(C)[0], return_counts=True)[-1]
+r = mace.item.value_counts(sort=False).values.astype(int)
+C = C[np.where(C)]
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Fit Stan Model.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## Assemble data.
-dd = dict(N=N, M=M, J=J, K=K, Y=Y, Q=Q)
+dd = dict(N=N, J=J, K=K, M=M, Y=Y, Q=Q, C=C, r=r, s=s)
 
 ## Load StanModel
 StanModel = CmdStanModel(stan_file=os.path.join('stan_models', f'{stan_model}.stan'))
@@ -107,13 +140,10 @@ cols = np.concatenate([
     [f'alpha[{i+1},{j+1}]' for i,j in np.column_stack([np.where(Q)]).T],
     
     ## Item difficulties.
-    samples.filter(regex='beta\[').columns,
+    samples.filter(regex='tau_pr\[').columns,
     
     ## Item loadings (standardized).
     [f'lambda[{i+1},{j+1}]' for i,j in np.column_stack([np.where(Q)]).T],
-    
-    ## Item thresholds (standardized).
-    samples.filter(regex='tau').columns
     
 ])
     
