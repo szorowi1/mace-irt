@@ -125,5 +125,5 @@ generated quantities {
         lambda[k] = (alpha[k] / D) / omega;
     }
     }
-
+    
 }
