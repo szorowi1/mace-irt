@@ -46,6 +46,8 @@ elif q_matrix == 2:
     cols = ['general', 'EN', 'NVEA', 'PN', 'PPhysA', 'PVA', 'PeerPhysA', 'PeerVA', 'SexA', 'WIPV', 'WSV']
 elif q_matrix == 3:
     cols = ['general', 'peer', 'reverse']
+elif q_matrix == 4:
+    cols = ['general', 'peer', 'sexual', 'reverse']
 else:
     raise ValueError(f'Invalid input: q_matrix == {q_matrix}')
     
