@@ -113,6 +113,22 @@ for f in files:
     bot += sum([dd.get('honeypot', 0) for dd in JSON if dd.get('survey', '') == 'mace'])
     dd['bot'] = bot
     
+    ## Gather BIS/BAS.
+    bisbas, = [dd for dd in JSON if 'survey' in dd and dd['survey']=='bisbas']
+    bisbas = {k:v for k, v in sorted(bisbas['responses'].items())}
+    dd['bis'] = sum(int(v) for v in list(bisbas.values())[:4])
+    dd['bas'] = sum(int(v) for v in list(bisbas.values())[4:-1])
+    
+    ## Gather SNS.
+    sns, = [dd for dd in JSON if 'survey' in dd and dd['survey']=='sns']
+    sns = {k:v for k, v in sorted(sns['responses'].items())}
+    dd['sns'] = sum(int(v) for v in list(sns.values())[:-1])
+    
+    ## Gather MAP.
+    mapr = [dd['responses'] for dd in JSON if 'survey' in dd and dd['survey']=='map']
+    mapr = {k:v for dd in mapr for k,v in dd.items()}
+    dd['map'] = sum(int(mapr['Q%0.2d' %(k+1)]) for k in range(15))
+    
     ## Append info.
     tuominen2022.append(dd)
     
