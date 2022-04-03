@@ -1,3 +1,4 @@
+// Graded response model (confirmatory item factor analysis w/ Q-matrix)
 // https://discourse.mc-stan.org/t/ragged-array-of-simplexes/1382/15
 
 functions {

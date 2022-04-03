@@ -45,9 +45,9 @@ if q_matrix == 1:
 elif q_matrix == 2: 
     cols = ['general', 'EN', 'NVEA', 'PN', 'PPhysA', 'PVA', 'PeerPhysA', 'PeerVA', 'SexA', 'WIPV', 'WSV']
 elif q_matrix == 3:
-    cols = ['general', 'peer', 'reverse']
+    cols = ['general', 'neglect']
 elif q_matrix == 4:
-    cols = ['general', 'peer', 'sexual', 'reverse']
+    cols = ['general', 'peer', 'reverse']
 else:
     raise ValueError(f'Invalid input: q_matrix == {q_matrix}')
     
@@ -58,7 +58,7 @@ design = design[cols]
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## Define locally dependent items.
-ld = [[7,8], [9,10,11], [13,14], [15,16], [19,20], [21,22,23], [24,25], [33,34,35], [36,37]]
+ld = [[6,7,8], [9,10,11], [13,14], [15,16], [19,20], [21,22,23], [24,25], [33,34,35], [36,37]]
 
 ## Convert items to pivot table.
 mace = mace.pivot_table('response', 'subject', 'item')
