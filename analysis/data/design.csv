@@ -1,4 +1,4 @@
-item,general,EN,NVEA,PN,PPhysA,PVA,PeerPhysA,PeerVA,SexA,WIPV,WSV,abuse,neglect,household,peer,reverse
+item,general,EN,NVEA,PN,PA,VA,PeerPA,PeerVA,SA,WIPV,WSV,abuse,neglect,household,peer,reverse
 1,1,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0
 2,1,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0
 3,1,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0

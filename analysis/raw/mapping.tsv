@@ -1,24 +1,24 @@
 item	item_id	subscale	text
-1	Swore	PVA	"Swore at you, called you names, said insulting things like you're 'fat', 'ugly', 'stupid', etc. more than a few times a year."
-2	Hurtful	PVA	"Said hurtful things that made you feel bad, embarrassed or humiliated more than a few times a year."
-3	Afraid	PVA	Acted in a way that made you afraid that you might be physically hurt.
-4	Leave	PVA	Threatened to leave or abandon you.
+1	Swore	VA	"Swore at you, called you names, said insulting things like you're 'fat', 'ugly', 'stupid', etc. more than a few times a year."
+2	Hurtful	VA	"Said hurtful things that made you feel bad, embarrassed or humiliated more than a few times a year."
+3	Afraid	VA	Acted in a way that made you afraid that you might be physically hurt.
+4	Leave	VA	Threatened to leave or abandon you.
 5	Closet	NVEA	"Locked you in a closet, attic, basement or garage."
-6	Pushed	PPhysA	"Intentionally pushed, grabbed, shoved, slapped, pinched, punched or kicked you."
-7	Hit	PPhysA	Hit you so hard that it left marks for more than a few minutes.
-8	Hit_med	PPhysA	"Hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention."
-9	Spank_open	PPhysA	"Spanked you on your buttocks, arms or legs."
-10	Spanked_bare	PPhysA	Spanked you on your bare (unclothed) buttocks.
-11	Spanked_strap	PPhysA	"Spanked you with an object such as a strap, belt, brush, paddle, rod, etc."
-12	Sex_comment	SexA	Made inappropriate sexual comments or suggestions to you.
-13	Fondled	SexA	Touched or fondled your body in a sexual way.
-14	Touch_them	SexA	Had you touch their body in a sexual way.
+6	Pushed	PA	"Intentionally pushed, grabbed, shoved, slapped, pinched, punched or kicked you."
+7	Hit	PA	Hit you so hard that it left marks for more than a few minutes.
+8	Hit_med	PA	"Hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention."
+9	Spank_open	PA	"Spanked you on your buttocks, arms or legs."
+10	Spanked_bare	PA	Spanked you on your bare (unclothed) buttocks.
+11	Spanked_strap	PA	"Spanked you with an object such as a strap, belt, brush, paddle, rod, etc."
+12	Sex_comment	SA	Made inappropriate sexual comments or suggestions to you.
+13	Fondled	SA	Touched or fondled your body in a sexual way.
+14	Touch_them	SA	Had you touch their body in a sexual way.
 15	Push_sib	WSV	Hit your sibling (stepsibling) so hard that it left marks for more than a few minutes.
 16	Hit_sib_med	WSV	"Hit your sibling (stepsibling) so hard, or intentionally harmed him/her in some way, that he/she received or should have received medical attention."
 17	Sex_comment_sib	WSV	Made inappropriate sexual comments or suggestions to your sibling (stepsibling).
 18	Fondled_sib	WSV	Touched or fondled your sibling (stepsibling) in a sexual way.
-19	o_fondled	SexA	Had you touch their body in a sexual way.
-20	o_intercourse	SexA	"Actually had sexual intercourse (oral, anal or vaginal) with you."
+19	o_fondled	SA	Had you touch their body in a sexual way.
+20	o_intercourse	SA	"Actually had sexual intercourse (oral, anal or vaginal) with you."
 21	Adults_push_m	WIPV	"Saw adults living in the household push, grab, slap or throw something at your mother (stepmother, grandmother)."
 22	Adults_hit_m	WIPV	"Saw adults living in the household hit your mother (stepmother, grandmother) so hard that it left marks for more than a few minutes."
 23	Adults_hit_med_m	WIPV	"Saw adults living in the household hit your mother (stepmother, grandmother) so hard, or intentionally harm her in some way, that she received or should have received medical attention."
@@ -29,13 +29,13 @@ item	item_id	subscale	text
 28	Peer_Rumors	PeerVA	"Said things behind your back, posted derogatory messages about you, or spread rumors about you."
 29	Peer_Excluded	PeerVA	Intentionally excluded you from activities or groups.
 30	Peer_afraid	PeerVA	Acted in a way that made you afraid that you might be physically hurt.
-31	Peer_threat_money	PeerPhysA	Threatened you in order to take your money or possessions.
-32	Peer_forced	PeerPhysA	Forced or threatened you to do things that you did not want to do.
-33	Peer_pushed	PeerPhysA	"Intentionally pushed, grabbed, shoved, slapped, pinched, punched, or kicked you."
-34	Peer_hit	PeerPhysA	Hit you so hard that it left marks for more than a few minutes.
-35	Peer_hit_med	PeerPhysA	"Hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention."
-36	Peer_forced_sex	SexA	Forced you to engage in sexual activity against your will.
-37	Peer_sex_not_want	SexA	Forced you to do things sexually that you did not want to do.
+31	Peer_threat_money	PeerPA	Threatened you in order to take your money or possessions.
+32	Peer_forced	PeerPA	Forced or threatened you to do things that you did not want to do.
+33	Peer_pushed	PeerPA	"Intentionally pushed, grabbed, shoved, slapped, pinched, punched, or kicked you."
+34	Peer_hit	PeerPA	Hit you so hard that it left marks for more than a few minutes.
+35	Peer_hit_med	PeerPA	"Hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention."
+36	Peer_forced_sex	SA	Forced you to engage in sexual activity against your will.
+37	Peer_sex_not_want	SA	Forced you to do things sexually that you did not want to do.
 38	M_unavail_poor	EN	"You felt that your mother or other important maternal figure was present in the household but emotionally unavailable to you for a variety of reasons like drugs, alcohol, workaholic, having an affair, heedlessly pursuing their own goals."
 39	F_unavail_poor	EN	"You felt that your father or other important paternal figure was present in the household but emotionally unavailable to you for a variety of reasons like drugs, alcohol, workaholic, having an affair, heedlessly pursuing their own goals."
 40	P_diff_please	NVEA	A parent or other important parental figure was very difficult to please.

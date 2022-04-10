@@ -43,7 +43,7 @@ design = read_csv(os.path.join(ROOT_DIR, 'data', 'design.csv'), index_col=0)
 if q_matrix == 1: 
     cols = ['general']
 elif q_matrix == 2: 
-    cols = ['general', 'EN', 'NVEA', 'PN', 'PPhysA', 'PVA', 'PeerPhysA', 'PeerVA', 'SexA', 'WIPV', 'WSV']
+    cols = ['general', 'EN', 'NVEA', 'PN', 'PA', 'VA', 'PeerPA', 'PeerVA', 'SA', 'WIPV', 'WSV']
 elif q_matrix == 3:
     cols = ['general', 'neglect']
 elif q_matrix == 4:
