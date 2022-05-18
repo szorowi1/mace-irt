@@ -85,7 +85,7 @@ X2 = loadings.applymap(np.digitize, bins=[0.35, 0.6]).values
 # Palette generator: https://learnui.design/tools/data-color-picker.html#single
 
 ## Define palette.
-palette = ['#e3e6e6','#b7c3c4','#8ca0a4']
+palette = ['#e3e6e6','#a1bfc8','#6598a8']
 
 ## Define axis limits.
 xlim = (0,1)

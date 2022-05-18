@@ -85,7 +85,7 @@ X2 = loadings.applymap(np.digitize, bins=[0.35, 0.6]).values
 # Palette generator: https://learnui.design/tools/data-color-picker.html#single
 
 ## Define palette.
-palette = ['#e3e6e6','#b7c3c4','#8ca0a4']
+palette = ['#e3e6e6','#a1bfc8','#6598a8']
 
 ## Define axis limits.
 xlim = (0,1)
@@ -184,4 +184,4 @@ ax.invert_yaxis()
 sns.despine(left=True, right=True, top=True, bottom=True, ax=ax)
     
 ## Save figure.
-plt.savefig(os.path.join(ROOT_DIR, 'figures', 'fig02.png'), dpi=100)
+plt.savefig(os.path.join(ROOT_DIR, 'figures', 'fig01.png'), dpi=100)
