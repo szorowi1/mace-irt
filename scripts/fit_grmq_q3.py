@@ -4,8 +4,7 @@ from numba import njit
 from os.path import dirname
 from pandas import DataFrame, read_csv, concat
 from tqdm import tqdm
-# ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
-ROOT_DIR = '.'
+ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Define parameters.
