@@ -204,12 +204,12 @@ mace['loo'] = louos.round(6)
 mace['ku'] = ku.round(6)
 
 ## Save.
-mace.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc0.csv'), index=False)
+mace.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc.csv'), index=False)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Discrepancy measure: observed scores.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-print('Computing discrepancy (x2).')
+print('Computing discrepancy (x2_nc).')
 
 ## Define score range.
 minlength = np.sum(s-1) + 1
@@ -230,60 +230,4 @@ NC = DataFrame(np.row_stack([counts, NC]))
 
 ## Save.
 NC.index = NC.index.rename('sample')
-NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc1.csv'))
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-### Discrepancy measure: SGDDM.
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-print('Computing discrepancy (sgddm).')
-
-@njit
-def smbc(u, v):
-    return (u @ v) / (np.sqrt(u @ u) * np.sqrt(v @ v))
-
-## Define indices.
-indices = np.tril_indices(mace.item.nunique(), k=-1)
-n_pairs = len(indices[0])
-
-## Preallocate space.
-summary = np.zeros((n_pairs, 3))
-sgddm = np.zeros(3)
-
-## Iteratively compute SGGDM.
-for i in tqdm(range(n_samp)):
-    
-    ## Compute SMBC (observed).
-    mace['r'] = R_obs[i]
-    obs = mace.pivot_table('r','subject','item').corr(smbc).values[indices]
-    summary[:,0] += obs
-
-    ## Compute SMBC (simulated).
-    mace['r'] = R_hat[i]
-    hat = mace.pivot_table('r','subject','item').corr(smbc).values[indices]
-    summary[:,1] += hat
-        
-    ## Compute ppp-values.
-    summary[:,2] += (obs > hat).astype(int)
-        
-    ## Compute SGDDM (observed). 
-    obs = np.abs(obs).mean()
-    sgddm[0] += obs
-    
-    ## Compute SGDDM (simulated). 
-    hat = np.abs(hat).mean()
-    sgddm[1] += hat
-    
-    ## Compute ppp-values.
-    sgddm[2] += (obs > hat).astype(int)
-    
-## Normalize values.
-summary /= n_samp
-sgddm /= n_samp
-
-## Convert to DataFrame.
-df = DataFrame(np.row_stack([sgddm, summary]), columns=['obs', 'pred', 'pval'])
-df.insert(0, 'k2', np.append(0, indices[1]))
-df.insert(0, 'k1', np.append(0, indices[0]))
-
-## Save.
-df.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_ppmc2.csv'), index=False)
+NC.to_csv(os.path.join(ROOT_DIR, 'stan_results', study, f'{stan_model}_m{q_matrix}_nc.csv'))
