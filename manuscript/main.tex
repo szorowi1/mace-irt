@@ -1,4 +1,4 @@
-\documentclass[letterpaper,man,natbib]{apa6}  %Leave this stuff alone
+\documentclass[letterpaper,man,natbib,floatsintext,longtable]{apa6}  
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
@@ -16,12 +16,9 @@
   {\normalfont\normalsize\bfseries}}
 \makeatother
 
-% dashed line (https://tex.stackexchange.com/questions/112343/beautiful-table-samples)
+% center contents of longtable
 \usepackage{array}
-\usepackage{arydshln}
-\setlength\dashlinedash{0.2pt}
-\setlength\dashlinegap{1.5pt}
-\setlength\arrayrulewidth{0.3pt}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 \title{The MACE is essentially unidimensional: Bifactor models of the `Maltreatment and Abuse Chronology of Exposure' scale}
 \shorttitle{Bifactor models of MACE}
@@ -48,6 +45,8 @@ Bifactor models, one type of hierarchical factor models, are well-suited for add
 
 % summary of paper paragraph tk
 
+Data availability statement to conclude
+
 \section{Methods}
 
 \subsection{Participants}
@@ -56,7 +55,39 @@ The participants in the current study (N=1633 total) belonged to one of two samp
 
 The second sample of participants (N=687) were recruited from the Prolific Academic platform (\url{https://www.prolific.co}) to participate in an online experiment in August -- October, 2021. Of these, N=582 were retained for analysis (see Exclusion Criteria below). Participants were eligible for participation if they were 18 years or older and currently resided in the United States or Canada. Participants received monetary compensation for their time (rate: \$12 USD/hr). This study was approved by the Institutional Review Board of the University of Ottawa (\#2021003), and all participants provided informed consent. This sample will hereafter be referred to as the \textit{replication} sample. 
 
-In both the original and replication samples, the majority of participants identified as women (original: male = 381, female = 670; replication: male = 258, female = 310, nonbinary or other = 9, rather not say = 5). The original sample is comprised of proportionally more woman than the replication sample ($z = 4.142, p < 0.001$). On average, participants in the original sample were younger than participants in the replication sample ($M_1 = 23.1$ yrs, $M_2 = 30.2$ yrs, $t = -19.313, p < 0.001$). Finally, the majority of participants in both sample identified as Caucasian or white (original: 76.7\%; replication: 75.8\%). The proportion of participants identifying as white were not different across samples ($z = 0.417$, $p = 0.677$). 
+\begin{table}[t!]
+    \centering
+    \begin{tabular*}{\textwidth}{lccc}
+    \toprule
+    Variable & Original (N=1051) & Replication (N=582) & p-value \\
+    \midrule
+    \textbf{Gender}, N (\%)                & & & p < 0.001 \\
+    \hspace{1em} Women                     & 670 (63.7\%) & 310 (53.3\%) & \\
+    \hspace{1em} Men                       & 381 (36.3\%) & 258 (44.3\%) & \\
+    \hspace{1em} Trans or NB               &   0  (0.0\%) &   9  (1.5\%) & \\
+    \hspace{1em} Rather not say            &   0  (0.0\%) &   5  (0.9\%) & \\
+    \midrule
+    \textbf{Age}, yrs                      & & & p < 0.001 \\
+    \hspace{1em} Mean (range)              & 23.1 (18 -- 27) & 30.2 (18 -- 80) & \\
+    \midrule
+    \textbf{Ethnicity}, N (\%)             & & & p = 0.214 \\
+    \hspace{1em} Not Hispanic or Latino    & 963 (91.6\%) & 518 (89.0\%) & \\
+    \hspace{1em} Hispanic or Latino        &  84  (8.0\%) &  57  (9.8\%) & \\
+    \hspace{1em} Rather not say            &   4  (0.4\%) &   7  (1.2\%) & \\
+    \midrule
+    \textbf{Race}, N (\%)                  & & & p = 0.677 \\
+    \hspace{1em} White                     & 806 (76.7\%) & 441 (75.8\%) & \\ 
+    \hspace{1em} Asian                     & 103  (9.8\%) &  65 (11.2\%) & \\
+    \hspace{1em} Black or African American &  81  (7.7\%) &  31  (5.3\%) & \\
+    \hspace{1em} Other                     &  61  (5.8\%) &  28  (4.8\%) & \\
+    \hspace{1em} Rather not say            &   0  (0.0\%) &  17  (2.9\%) & \\
+    \bottomrule
+    \end{tabular*}
+    \caption{\normalfont Demographics of the two samples included in this study. The original sample was recruited and first reported by \cite{teicher2015maltreatment}. The replication sample was recruited by the current authors for the purposes of this study.}
+    \label{tab:demographics}
+\end{table}
+
+The demographics of the two samples are summarized in Table \ref{tab:demographics}. In both samples, the majority of participants identified as women; however, the original sample was comprised of proportionally more woman than the replication sample ($z$ = 4.142, $p$ < 0.001). Moreover, participants in the original sample were younger on average than participants in the replication sample ($t$ = -19.313, $p$ < 0.001). Finally, the majority of participants in both samples identified as White, and not as Hispanic or Latino. The proportion of participants identifying as White was not statistically different across samples ($z = 0.417$, $p = 0.677$); neither was the proportion of participants identifying as Hispanic or Latino ($z$ = -1.241, $p$ = 0.214).
 
 \subsection{Measures}
 
@@ -76,9 +107,9 @@ A mean shift in overall endorsement rates is not necessarily an indication that 
 
 Using the cutoffs recommended by \cite{hidalgo2014binary}, we identified 11 of 52 items on the MACE that exhibited large DIF by study (Figure S1). Interestingly these included all six of the reverse-scored items. We also found an additional 11 items that exhibited large DIF by gender (Figure S2). Five of these items concerned sexual abuse (endorsed by more women than men), and another five concerned peer physical abuse (endorsed by more men than women). We identified no items that exhibited large DIF by age. Given the number of items exhibiting DIF by sample membership, we elected to model each sample separately.
 
-\subsection{Response dependency}
+\subsection{Response dependence}
 
-The MACE contains a total of 12 item pairs and triplets characterized by response dependence (Table S1). The items in some of these sets are structurally dependent, where a response to one item requires, or strongly implies, a certain response on the second. For example, a person endorsing item 8 (``Parents or guardians hit you so hard that you received medical attention'') is all but certain to endorse item 7 (``Parents or guardians hit you so hard that it left marks for more than a few minutes''). Other items are dependent by virtue of redundancy. One such example is item 36 (``Peers forced you to engage in sexual activity against your will'') and 37 (``Peers forced you to do things sexually that you did not want to do``); here the same question is asked twice using slightly different language.
+The MACE contains a total of 12 item pairs and triplets characterized by response dependence (Table \ref{tab:dependence}). The items in some of these sets are structurally dependent, where a response to one item requires, or strongly implies, a certain response on the second. For example, a person endorsing item 8 (``Parents or guardians hit you so hard that you received medical attention'') is all but certain to endorse item 7 (``Parents or guardians hit you so hard that it left marks for more than a few minutes''). Other items are dependent by virtue of redundancy. One such example is item 36 (``Peers forced you to engage in sexual activity against your will'') and 37 (``Peers forced you to do things sexually that you did not want to do``); here the same question is asked twice using slightly different language.
 
 For this study, we were concerned about response dependence for two reasons. First, it can inflate the estimates of item discrimination parameters, making items appear more informative than they actually are \citep{marais2008formalizing}. Second, response dependence can inflate the estimates of item loadings on specific factors in bifactor models, giving false support for a larger number of factors than necessary \citep{reise2013applying}. Following \cite{marais2008formalizing}, we therefore converted each set of dependent items into a single polytomous item. Thus, the MACE was reduced from 52 to 39 items in total.
 
@@ -87,6 +118,13 @@ For this study, we were concerned about response dependence for two reasons. Fir
 To begin our investigation of the MACE factor structure, we fit a series of confirmatory item factor models to the response data from each sample separately. The basis of each model is the graded response model for ordered polytomous data \citep{samejima1997graded}. The factor structure for each of the four models is depicted in Figure \ref{fig:models}. The first model we fit is a one-factor (undimensional) model whereby all items load onto a general maltreatment factor (Figure \ref{fig:models}a). The second is a bifactor model, in which all items load onto a general maltreatment factor and also one of 10 specific factors corresponding to their subscale membership (Figure \ref{fig:models}b). 
 
 The third model we fit investigated a conceptual model of maltreatment that distinguishes between threat and deprivation as distinct forms of childhood adversity \citep{mclaughlin2014childhood}. Initially we fit a bifactor model in which all items loaded onto a general maltreatment factor one either the threat or deprivation specific factors. However, we observed vanishing item loadings on the threat specific factor. As such, we instead fit a bifactor S-1 model \citep{eid2017anomalous} where all items load onto a general maltreatment (or reference) factor, and only the items measuring neglect experiences load onto their own specific factor (Figure \ref{fig:models}c). 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1.1\textwidth,center]{figures/fig01.png}
+    \caption{Caption}
+    \label{fig:models}
+\end{figure}
 
 The fourth and final model we fit was designed provide a more parsimonious factor structure for the MACE. Items in the MACE can be neatly divided according to the source of adversity: maltreatment by adults at home (e.g. parents) or by peers. We hypothesized then that there would be two principal factors underlying responses on the MACE, maltreatment by adults and peer victimization. Based on preliminary model fits, we also suspected the presence of a secondary methods factor affecting the 6 reverse-scored items. Initially we fit a bifactor model in which all items loaded onto a general maltreatment factor and also one of three specific factors: maltreatment by adults, peer victimization, or reverse-scoring. However, we also observed vanishing loadings for the maltreatment by adults specific factor. Thus, we instead fit a bifactor S-1 model where all items load onto a general maltreatment factor; in addition, the peer victimization and reverse-scoring items load onto their own respective specific factors (Figure \ref{fig:models}d). 
 
@@ -120,6 +158,31 @@ EFA was performed using the \textit{lavaan} (v0.6.11; \citealt{lavaan}) package 
 
 The goodness-of-fit indices for each model and sample are summarized in Table \ref{table:diagnostics}. According to the traditional indices, each model provided at least an acceptable fit to the response data. All RMSEA value were <0.05 and the majority of CFI and TLI values were >0.95. The only exception were for the fits of models 1 and 3 to the original sample data, which exhibited only acceptable fits (i.e. CFI/TLI > 0.90). In general, model fits were better for the replication sample data than for the original sample. Furthermore, all of the posterior predictive p-values corresponding to the $\chi^2_{NC}$ discrepancy measure were within the acceptable range. Thus all models were sufficiently able to reproduce the distribution of overall severity scores for each sample.
 
+\begin{table}[t!]
+\small
+\centering
+\begin{adjustbox}{center}
+\begin{tabular}{ccccccccccr}
+\toprule
+Sample & Model & $\chi^2 (df)$ &  RMSEA & CFI & TLI & $\chi^2_{NC}$ (PPP) & $Q3_{\max}$ &  $Q3_{\text{crit}}$ & LOO-CV & \multicolumn{1}{c}{$\Delta$LOO (se)} \\
+\midrule
+Original & 1 &  1858 (702) &  0.040 &  0.927 &  0.923 &  0.051 (0.230) &  0.589 &  0.239 &  30967.2 &  1748.0 (76.7) \\
+& 2 &  1373 (663) &  0.032 &  0.955 &  0.950 &  0.046 (0.356) &  0.573 &  0.300 &  29211.3 & \multicolumn{1}{c}{-} \\
+& 3 &  1571 (692) &  0.035 &  0.944 &  0.940 &  0.051 (0.214) &  0.591 &  0.255 &  30531.1 &  1312.0 (68.0) \\
+& 4 &  1253 (687) &  0.028 &  0.964 &  0.961 &  0.046 (0.346) &  0.591 &  0.279 &  29219.2 & 7.9 (56.3) \\
+\midrule
+Replication & 1 &  1086 (702) &  0.031 &  0.954 &  0.952 &  0.065 (0.629) &  0.513 &  0.250 &  19771.6 &  1089.3 (58.4) \\
+& 2 &   956 (663) &  0.028 &  0.965 &  0.961 &  0.058 (0.766) &  0.456 &  0.310 &  18706.2 &    24.0 (52.0) \\
+& 3 &   881 (692) &  0.022 &  0.977 &  0.976 &  0.062 (0.684) &  0.468 &  0.316 &  19177.7 &   495.5 (45.0) \\
+& 4 &   842 (687) &  0.020 &  0.982 &  0.980 &  0.058 (0.756) &  0.437 &  0.318 &  18682.2 & \multicolumn{1}{c}{-} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\captionsetup{width=1.1\textwidth}
+\caption{\normalfont Fit statistics for the confirmatory factor models by sample. LOO-CV values are presented in deviance scale (i.e. smaller values indicate better fit). Abbreviations: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; PPP = posterior predictive p-value; $Q3_{\max}$ = maximum $Q_3$ value in the sample for the model; $Q3_{\text{crit}}$ = critical $Q_3$ value for the model; LOO-CV = leave-one-out cross-validation.}
+\label{table:diagnostics}
+\end{table}
+
 Next we inspected the $Q_3$ indices for evidence of local dependence. For all models and samples, the maximum observed $Q_3$ index was greater than the 99\% percentile critical value. To understand the extent of local dependence for each model and sample, we visualized the $Q_3$ values for item pairs exceeding the critical value (Figure S3). The unidimensional model fits exhibited many locally dependent item pairs, especially among the peer victimization and reverse-scored items, suggesting possible underfactorization. By comparison, models 2 -- 4 exhibited many fewer locally dependent item pairs. Of these, the reasons for dependence were clear. For example, the dependence between items 17 (``Parents made inappropriate sexual comments or suggestions to your sibling or stepsibling'') and 18 (``Parents touched or fondled your sibling or stepsibling in a sexual way'') present for all models is easily understood as surface local dependence. Regardless, the estimated item discrimination parameters for each model fit seldom exceeded the normal range ($\alpha \leq 4$). That is, the degree of local dependence present in the models is not yielding substantial bias in parameter estimation \citep{edwards2018diagnostic}. Thus, we conclude that all model fits exhibit at least an acceptable fit to the response data.
 
 The results of the model comparison are also summarized in Table \ref{table:diagnostics}. Across samples, models 2 and 4 provided better fits to the data than models 1 and 3. Model 2 provided a numerically better fit to the data than model 4 in the original sample ($\Delta \text{LOO}$ = 7.9, se = 56.3), but the opposite was observed in the replication sample ($\Delta \text{LOO}$ = -24.0, se = 52.0). These differences in LOO-CV values, however, are both within four standard errors of the mean indicating only weak predictive improvements \citep{vehtari2022cv}. Thus the results suggest that models 2 and 4 provide approximately equal fits to the data, which is notable given that model 4 assumes a more parsimonious factor structure of the MACE.
@@ -127,6 +190,13 @@ The results of the model comparison are also summarized in Table \ref{table:diag
 \subsection{Confirmatory item response models}
 
 In the following sections, we interpret the fit of each confirmatory item response model. To ease interpretation, we have reproduced the standardized factor loadings of each model for the original sample in Figure \ref{fig:loadings_original} and for the replication sample in Figure \ref{fig:loadings_online}. The model-based reliability indices for the bifactor models are summarized in Table \ref{table:reliability}. 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1.1\textwidth,center]{figures/fig02.png}
+    \caption{Standardized factor loadings from the four models estimated from the original sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
+    \label{fig:loadings_original}
+\end{figure}
 
 \subsubsection{Model 1: Unidimensional model of the MACE}
 
@@ -140,7 +210,47 @@ In sum, the results provide evidence on average in favor a unidimensional model 
 
 Next we inspect the bifactor model with 10 specific factors, one per MACE subscale (model 2). In the original sample, the loadings on the general maltreatment factor ranged between 0.235 and 0.864, with an average value of 0.575 (95\% HDI = 0.556 -- 0.593). In the replication sample, the general factor loadings ranged between 0.299 and 0.827, with an average value of 0.580 (95\% HDI = 0.560 -- 0.601). The relative parameter bias was marginal for both samples (original = 2.1\%; replication = 2.7\%), suggesting little bias in the factor loadings of the unidimensional models due to multidimensionality.  
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.1\textwidth,center]{figures/fig03.png}
+    \caption{Standardized factor loadings from the four models estimated from the online sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
+    \label{fig:loadings_online}
+\end{figure}
+
 By contrast the standardized loadings on the specific factors were much smaller in magnitude, seldom exceeding loadings on the general factor. In the original dataset, the specific factor loadings ranged 0.014 to 0.797 with an average value of 0.313 (95\% HDI = 0.285 -- 0.341). In the replication dataset, the range was between 0.043 and 0.698, with an average value of 0.343 (95\% HDI = 0.315 -- 0.369). Only items from the peer victimization subscales (i.e. peer verbal \& physical abuse) had specific factor loadings of roughly equal or greater magnitude to those on the general factor. 
+
+\begin{table}[h!]
+\centering
+\begin{tabular*}{\textwidth}{crccccccccc}
+\toprule
+& & & \multicolumn{4}{c}{Original} & \multicolumn{4}{c}{Replication} \\
+\cmidrule(lr){4-7}\cmidrule(lr){8-11}
+Model & Subscale & PUC & ECV & $\omega$ & $\omega_{h/s}$ & H & ECV & $\omega$ & $\omega_{h/s}$ & H \\
+\midrule
+2 & General &  0.912 & 0.716 &  0.963 &   0.924 &  0.964 & 0.697 & 0.965 & 0.924 & 0.961 \\
+& VA        &        &       &  0.909 &   0.069 &  0.273 &       & 0.893 & 0.162 & 0.478 \\
+& PA        &        &       &  0.590 &   0.037 &  0.052 &       & 0.595 & 0.148 & 0.194 \\
+& NVEA      &        &       &  0.848 &   0.136 &  0.525 &       & 0.827 & 0.117 & 0.424 \\
+& SA        &        &       &  0.710 &   0.059 &  0.134 &       & 0.749 & 0.290 & 0.452 \\
+& EN        &        &       &  0.715 &   0.162 &  0.304 &       & 0.874 & 0.203 & 0.542 \\
+& PN        &        &       &  0.800 &   0.217 &  0.479 &       & 0.812 & 0.114 & 0.284 \\
+& WSV       &        &       &  0.695 &   0.027 &  0.053 &       & 0.651 & 0.037 & 0.067 \\
+& WIPV      &        &       &  0.655 &   0.146 &  0.197 &       & 0.612 & 0.077 & 0.107 \\
+& PeerVA    &        &       &  0.878 &   0.621 &  0.818 &       & 0.853 & 0.565 & 0.766 \\
+& PeerPA    &        &       &  0.699 &   0.335 &  0.443 &       & 0.694 & 0.337 & 0.446 \\
+\midrule
+3 & General &  0.939 & 0.864 &  0.958 &   0.928 &  0.964 & 0.841 & 0.959 & 0.922 & 0.959 \\
+& Neglect   &        &       &  0.877 &   0.384 &  0.766 &       & 0.921 & 0.375 & 0.814 \\
+\midrule
+4 & General &  0.931 & 0.738 &  0.961 &   0.896 &  0.965 & 0.751 & 0.961 & 0.904 & 0.960 \\
+& Peer      &        &       &  0.889 &   0.569 &  0.842 &       & 0.868 & 0.493 & 0.781 \\
+& Reverse   &        &       &  0.839 &   0.584 &  0.739 &       & 0.915 & 0.498 & 0.773 \\
+\bottomrule
+\end{tabular*}
+\captionsetup{width=1.\textwidth}
+\caption{\normalfont Model-based reliability indices for the three bifactor models. Abbreviations: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse; ECV = explained common variance.}
+\label{table:reliability}
+\end{table}
 
 Given these, we found that the MACE overall severity score had excellent reliability (original: $\omega$ = 0.963; replication: $\omega$ = 0.965). Further, the $\omega_h$ value for both samples was 0.924 indicating that 96.0\% and 95.8\% of the reliable variance in the overall severity score is attributable to the general maltreatment factor. (This is not in itself so surprising given the large number of subscales and relative paucity of items per subscale.) Notably, the ECV values were 0.716 and 0.697 for the original and replication samples, respectively. In conjunction with a large PUC value of 0.912, these results provide clear evidence for a dominant general maltreatment factor in the MACE. 
 
@@ -172,6 +282,14 @@ The standardized factor loadings for the two- and three-factor solutions generat
 
 The three-factor solution for each sample were similar. The analysis produced a primary adult maltreatment factor with secondary peer victimization and reverse-scoring factors. (To note items concerning sexual abuse loaded more strongly on the peer victimization scale in the replication sample, warranting some caution in interpreting the replicability of factor structures.) With the oblique rotation, we observed only modest inter-factor correlations (original: mean $r$ = 0.371; replication: mean $r$ = 0.269). To conclude, the structure of both the two- and three-factor exploratory factor solutions resembled the structure of the bifactor S-1 model with two specific factors (model 4), providing further support for this model of responses on the MACE. 
 
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=1\textwidth,center]{figures/fig04.png}
+    \caption{Caption}
+    \label{fig:efa}
+\end{figure}
+
+
 \section{Discussion}
 
 The MACE is a promising alternative measure of childhood maltreatment \citep{georgieva2022systematic}. However, there has been little study of its structural validity \citep{saini2019systematic}, leaving unanswered questions about the scale's underlying factor structure and the validity of its total/subscale scores. Here we investigated the factor structure of the MACE using both confirmatory and exploratory item response modeling. The fits of a bifactor model (model 2) to the response data from both samples revealed a dominant general factor with uniformly strong loadings from the majority of items, and substantially weaker loadings on the specific subscale factors. The general maltreatment factor explained approximately 70\% of the reliable variance in responses across samples. When comparing the loadings on the general factor to those from a unidimensonal model, the relative parameter bias was marginal. Together, these results support the conclusion that the MACE is essentially unidimensional. 
@@ -194,94 +312,54 @@ The current study is, of course, not without limitations. The most apparent limi
 
 A second limitation concerns our sample. Though the inclusion of the replication sample increased the overall diversity of our participants with respect to gender and age, other aspects of diversity are notably lacking. For example, our combined sample was not racially or ethnically diverse. This is important as previous studies have identified DIF for childhood trauma questionnaires by race \citep{thombs2007evaluation, rodriguez2019identification}, which raises the possibility that similar issues could be found for the MACE with more diverse samples. Moreover, as noted above, we are not currently able to explain why DIF was identified between the original and replication samples. Further research is needed to identify and unpack violations of measurement invariance in the MACE in order to effectively assess childhood maltreatment in many different populations. 
 
-To conclude, we found that the factor structure of the MACE is essentially unidimensional. Despite the presence of smaller secondary factors, bifactor modeling revealed that the large majority of reliable variance in the dichotomous MACE responses are attributable to a general maltreatment factor. Thus, we found that the MACE total score is a valid and reliable of overall childhood maltreatment. In contrast, we found that MACE subscale and composite scores are not valid measures of particular types of childhood maltreatment, but instead primarily reflect general maltreatment. Moving forward, childhood abuse and neglect researchers utilizing the MACE (or otherwise) should take pains to ensure that any subscale or composite scores they employ are valid, lest they draw spurious inferences.  
-
+To conclude, we found that the factor structure of the MACE is essentially unidimensional. Despite the presence of smaller secondary factors, bifactor modeling revealed that the large majority of reliable variance in the dichotomous MACE responses are attributable to a general maltreatment factor. Thus, we found that the MACE total score is a valid and reliable of overall childhood maltreatment. In contrast, we found that MACE subscale and composite scores are not valid measures of particular types of childhood maltreatment, but instead primarily reflect general maltreatment. Moving forward, childhood abuse and neglect researchers utilizing the MACE (or otherwise) should take pains to ensure that any subscale or composite scores they employ are valid, lest they draw spurious inferences. 
 \bibliography{main}
 
-\begin{table}
-\small
+\pagebreak
+\section{Supplementary materials}
+
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{longtable}{P{0.02\linewidth}p{0.7\linewidth}|P{0.05\linewidth}P{0.05\linewidth}P{0.05\linewidth}}
 \centering
-\begin{adjustbox}{center}
-\begin{tabular}{ccccccccccr}
+\# & Item & \multicolumn{3}{c}{Tetrachoric Corr.} \\
 \toprule
-Sample & Model & $\chi^2 (df)$ &  RMSEA & CFI & TLI & $\chi^2_{NC}$ (PPP) & $Q3_{\max}$ &  $Q3_{\text{crit}}$ & LOO-CV & \multicolumn{1}{c}{$\Delta$LOO (se)} \\
+6 & {\small Intentionally pushed, grabbed, shoved, slapped, pinched, punched or kicked you.} & - & & \\
+7 & {\small Hit you so hard that it left marks for more than a few minutes.} & 0.778 & - &  \\
+8 & {\small Hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention.} & 0.702 & 0.758 & - \\
 \midrule
-Original & 1 &  1858 (702) &  0.040 &  0.927 &  0.923 &  0.051 (0.230) &  0.589 &  0.239 &  30967.2 &  1748.0 (76.7) \\
-& 2 &  1373 (663) &  0.032 &  0.955 &  0.950 &  0.046 (0.356) &  0.573 &  0.300 &  29211.3 & \multicolumn{1}{c}{-} \\
-& 3 &  1571 (692) &  0.035 &  0.944 &  0.940 &  0.051 (0.214) &  0.591 &  0.255 &  30531.1 &  1312.0 (68.0) \\
-& 4 &  1253 (687) &  0.028 &  0.964 &  0.961 &  0.046 (0.346) &  0.591 &  0.279 &  29219.2 & 7.9 (56.3) \\
+9& {\small Spanked you on your buttocks, arms or legs.} & - & \\
+10	& {\small Spanked you on your bare (unclothed) buttocks.} & 0.862 & - & \\
+11 & {\small Spanked you with an object such as a strap, belt, brush, paddle, rod, etc.} & 0.816 & 0.519 & - \\
 \midrule
-Replication & 1 &  1086 (702) &  0.031 &  0.954 &  0.952 &  0.065 (0.629) &  0.513 &  0.250 &  19771.6 &  1089.3 (58.4) \\
-& 2 &   956 (663) &  0.028 &  0.965 &  0.961 &  0.058 (0.766) &  0.456 &  0.310 &  18706.2 &    24.0 (52.0) \\
-& 3 &   881 (692) &  0.022 &  0.977 &  0.976 &  0.062 (0.684) &  0.468 &  0.316 &  19177.7 &   495.5 (45.0) \\
-& 4 &   842 (687) &  0.020 &  0.982 &  0.980 &  0.058 (0.756) &  0.437 &  0.318 &  18682.2 & \multicolumn{1}{c}{-} \\
+13 & {\small Touched or fondled your body in a sexual way.} & - \\
+14 & {\small Had you touch their body in a sexual way.} & 0.954 & - \\
+\midrule
+15 & {\small Hit your sibling (stepsibling) so hard that it left marks for more than a few minutes.} &  \\
+16 & {\small Hit your sibling (stepsibling) so hard, or intentionally harmed him or her in some way, that he/she received or should have received medical attention.} & 0.966 & - \\
+\midrule
+19 & {\small Had you touch their body in a sexual way.} & - \\
+20 & {\small Actually had sexual intercourse (oral, anal or vaginal) with you.} & 0.909 & - \\
+\midrule
+21 & {\small Saw adults living in the household push, grab, slap or throw something at your mother (stepmother, grandmother).} & - \\
+22 & {\small Saw adults living in the household hit your mother, stepmother, or grandmother so hard that it left marks for more than a few minutes.} & 0.920 & -  \\
+23 & {\small Saw adults living in the household hit your mother, stepmother, or grandmother so hard, or intentionally harm her in some way, that she received or should have received medical attention.} & 0.808 & 0.934 & - \\
+\midrule
+24 & {\small Saw adults living in the household push, grab, slap or throw something at your father (stepfather, grandfather).} &  \\
+25 & {\small Saw adults living in the household hit your father, stepfather, or grandfather so hard that it left marks for more than a few minutes.} & 0.900 & -\\
+\midrule
+33 & {\small Peers intentionally pushed, grabbed, shoved, slapped, pinched, punched, or kicked you.} & - \\
+34 & {\small Peers hit you so hard that it left marks for more than a few minutes.} & 0.829 & - \\
+35 & {\small Peers hit you so hard, or intentionally harmed you in some way, that you received or should have received medical attention.} & 0.723 & 0.907 & - \\
+\midrule
+36 & {\small Peers forced you to engage in sexual activity against your will.} &  - & \\
+37 & {\small Peers forced you to do things sexually that you did not want to do.} & 0.975 & - \\
 \bottomrule
-\end{tabular}
-\end{adjustbox}
-\captionsetup{width=1.1\textwidth}
-\caption{\normalfont Fit statistics for the confirmatory factor models by sample. LOO-CV values are presented in deviance scale (i.e. smaller values indicate better fit). Abbreviations: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; PPP = posterior predictive p-value; $Q3_{\max}$ = maximum $Q_3$ value in the sample for the model; $Q3_{\text{crit}}$ = critical $Q_3$ value for the model; LOO-CV = leave-one-out cross-validation.}
-\label{table:diagnostics}
-\end{table}
-
-\begin{table}
-\centering
-\begin{tabular*}{\textwidth}{crccccccccc}
-\toprule
-& & & \multicolumn{4}{c}{Original} & \multicolumn{4}{c}{Replication} \\
-\cmidrule(lr){4-7}\cmidrule(lr){8-11}
-Model & Subscale & PUC & ECV & $\omega$ & $\omega_{h/s}$ & H & ECV & $\omega$ & $\omega_{h/s}$ & H \\
-\midrule
-2 & General  &  0.912&0.716 &  0.963 &   0.924 &  0.964&0.697 &  0.965 &   0.924 &  0.961 \\
-& VA       &       &      &  0.909 &   0.069 &  0.273&      &  0.893 &   0.162 &  0.478 \\
-& PA       &       &      &  0.590 &   0.037 &  0.052&      &  0.595 &   0.148 &  0.194 \\
-& NVEA     &       &      &  0.848 &   0.136 &  0.525&      &  0.827 &   0.117 &  0.424 \\
-& SA       &       &      &  0.710 &   0.059 &  0.134&     &  0.749 &   0.290 &  0.452 \\
-& EN       &       &      &  0.715 &   0.162 &  0.304&     &  0.874 &   0.203 &  0.542 \\
-& PN       &       &      &  0.800 &   0.217 &  0.479&     &  0.812 &   0.114 &  0.284 \\
-& WSV      &       &      &  0.695 &   0.027 &  0.053&     &  0.651 &   0.037 &  0.067 \\
-& WIPV     &       &      &  0.655 &   0.146 &  0.197&      &  0.612 &   0.077 &  0.107 \\
-& PeerVA   &       &      &  0.878 &   0.621 &  0.818&     &  0.853 &   0.565 &  0.766 \\
-& PeerPA   &       &      &  0.699 &   0.335 &  0.443&     &  0.694 &   0.337 &  0.446 \\
-\midrule
-3 & General &  0.939&0.864 &  0.958 &   0.928 &  0.964&0.841 &  0.959 &   0.922 &  0.959 \\
-& Neglect &       &      &  0.877 &   0.384 &  0.766&      &  0.921 &   0.375 &  0.814 \\
-\midrule
-4 & General &  0.931&0.738 &  0.961 &   0.896 &  0.965&0.751 &  0.961 &   0.904 &  0.960 \\
-& Peer    &       &      &  0.889 &   0.569 &  0.842&      &  0.868 &   0.493 &  0.781 \\
-& Reverse &       &      &  0.839 &   0.584 &  0.739&     &  0.915 &   0.498 &  0.773 \\
-\bottomrule
-\end{tabular*}
-\captionsetup{width=1.\textwidth}
-\caption{\normalfont Model-based reliability indices for the three bifactor models. Abbreviations: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse; ECV = explained common variance.}
-\label{table:reliability}
-\end{table}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1.1\textwidth,center]{figures/fig00.png}
-    \caption{Caption}
-    \label{fig:models}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1.1\textwidth,center]{figures/fig01.png}
-    \caption{Standardized factor loadings from the four models estimated from the original sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
-    \label{fig:loadings_original}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1.1\textwidth,center]{figures/fig02.png}
-    \caption{Standardized factor loadings from the four models estimated from the online sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
-    \label{fig:loadings_online}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\textwidth,center]{figures/fig03.png}
-    \caption{Caption}
-    \label{fig:efa}
-\end{figure}
+\caption{\normalfont The 12 item pairs and triplets in the MACE characterized by response dependence. The tetrachoric correlation (averaged over samples) for each pair of items in a set is presented in tandem with the item wording.}
+\label{tab:dependence}
+\end{longtable}
 
 \end{document}
