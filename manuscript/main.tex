@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage[export]{adjustbox}
+\usepackage{setspace}
 
 % override apa6 section headers
 % https://tex.stackexchange.com/questions/125537/how-to-modify-subsubsection-header-apa6-cls
@@ -105,7 +106,7 @@ Prior to analysis, we investigated whether it was appropriate to combine respons
 
 A mean shift in overall endorsement rates is not necessarily an indication that measurement invariance has been violated. One possibility is simply that participants in the replication sample had simply experienced more childhood maltreatment than participants in the original sample. A second possibility is that the differences in the demographic composition of the two samples (e.g. gender, age) moderate the differences in endorsement rates. To investigate these possibilities, we tested for uniform differential item functioning (DIF) using logistic regression \citep{rogers1993comparison}, in which a participant's endorsement response for an item was predicted by their rest score (i.e. their sum score for all other items), sample membership, gender, and age. 
 
-Using the cutoffs recommended by \cite{hidalgo2014binary}, we identified 11 of 52 items on the MACE that exhibited large DIF by study (Figure S1). Interestingly these included all six of the reverse-scored items. We also found an additional 11 items that exhibited large DIF by gender (Figure S2). Five of these items concerned sexual abuse (endorsed by more women than men), and another five concerned peer physical abuse (endorsed by more men than women). We identified no items that exhibited large DIF by age. Given the number of items exhibiting DIF by sample membership, we elected to model each sample separately.
+Using the cutoffs recommended by \cite{hidalgo2014binary}, we identified 11 of 52 items on the MACE that exhibited large DIF by study (Figure \ref{fig:dif_study}). Interestingly these included all six of the reverse-scored items. We also found an additional 11 items that exhibited large DIF by gender (Figure \ref{fig:dif_gender}). Five of these items concerned sexual abuse (endorsed by more women than men), and another five concerned peer physical abuse (endorsed by more men than women). We identified no items that exhibited large DIF by age. Given the number of items exhibiting DIF by sample membership, we elected to model each sample separately.
 
 \subsection{Response dependence}
 
@@ -289,7 +290,6 @@ The three-factor solution for each sample were similar. The analysis produced a 
     \label{fig:efa}
 \end{figure}
 
-
 \section{Discussion}
 
 The MACE is a promising alternative measure of childhood maltreatment \citep{georgieva2022systematic}. However, there has been little study of its structural validity \citep{saini2019systematic}, leaving unanswered questions about the scale's underlying factor structure and the validity of its total/subscale scores. Here we investigated the factor structure of the MACE using both confirmatory and exploratory item response modeling. The fits of a bifactor model (model 2) to the response data from both samples revealed a dominant general factor with uniformly strong loadings from the majority of items, and substantially weaker loadings on the specific subscale factors. The general maltreatment factor explained approximately 70\% of the reliable variance in responses across samples. When comparing the loadings on the general factor to those from a unidimensonal model, the relative parameter bias was marginal. Together, these results support the conclusion that the MACE is essentially unidimensional. 
@@ -361,5 +361,19 @@ To conclude, we found that the factor structure of the MACE is essentially unidi
 \caption{\normalfont The 12 item pairs and triplets in the MACE characterized by response dependence. The tetrachoric correlation (averaged over samples) for each pair of items in a set is presented in tandem with the item wording.}
 \label{tab:dependence}
 \end{longtable}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth,center]{figures/figS01.png}
+    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by sample. (A) Proportions of participants endorsing having experienced a maltreatment event by study sample. (B) The log odds that the proportion of endorsements are larger in one or the other sample. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items \end{spacing}}
+    \label{fig:dif_study}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.82\textwidth,center]{figures/figS02.png}
+    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by gender. (A) Proportions of participants endorsing having experienced a maltreatment event by study gender. (B) The log odds that the proportion of endorsements are larger in one or the other gender. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items \end{spacing}}
+    \label{fig:dif_gender}
+\end{figure}
 
 \end{document}

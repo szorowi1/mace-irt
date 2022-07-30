@@ -13,7 +13,7 @@ sns.set_style("ticks")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## I/O parameters.
-study = 'tuominen2022'
+study = 'teicher2015'
 
 ## Define subscales by model.
 factors = {
@@ -184,4 +184,4 @@ ax.invert_yaxis()
 sns.despine(left=True, right=True, top=True, bottom=True, ax=ax)
     
 ## Save figure.
-plt.savefig(os.path.join(ROOT_DIR, 'figures', 'fig02.png'), dpi=100)
+plt.savefig(os.path.join(ROOT_DIR, '..', 'figures', 'fig02.png'), dpi=100)
