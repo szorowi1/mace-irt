@@ -21,6 +21,7 @@
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
+
 \title{The MACE is essentially unidimensional: Bifactor models of the `Maltreatment and Abuse Chronology of Exposure' scale}
 \shorttitle{Bifactor models of MACE}
 \author{Samuel Zorowitz$^1$, Lauri Tuominen$^{2}$}
@@ -92,7 +93,7 @@ The demographics of the two samples are summarized in Table \ref{tab:demographic
 
 All participants completed the 52-item version of the MACE scale \citep{teicher2015maltreatment}. The scale is a retrospective measure of the severity and timing of exposure to 10 types of childhood maltreatment. For each item, participants endorse whether they ever experienced a particular event during childhood (e.g. ``Parents or guardians intentionally pushed, grabbed, shoved, slapped, pinched, punched or kicked you'') and, if so, at what ages (up to age 18). Here we only analyze the binary endorsement responses (Yes = 1, No = 0) and not the chronology data. Six of the 52-items --- evenly divided between the emotional and physical neglect subscales --- are positively valenced (e.g. ``One or more individuals in your family helped you feel important or special'') and reverse-scored. For these items we follow the scoring convention set by \cite{teicher2015maltreatment}: a score of 1 is assigned to a response only in the absence of a positive event for all 18 years of childhood. This is in contrast to the remaining 46 items in the scale, where a score of 1 is assigned to a response if maltreatment or abuse occurred in at least one year of childhood.
 
-In both the original and replication samples, participants completed a number of additional self-report symptom measures. We do not include these in our analyses and we will therefore not discuss these measures further in the main text. For completeness, we report these secondary self-report measures in the Supplementary Materials. 
+In both the original and replication samples, participants completed a number of additional self-report symptom measures. We do not include these in our analyses and therefore do not discuss these measures further in the main text. For completeness, we report these secondary self-report measures in the Supplementary Materials. 
 
 \subsection{Exclusion criteria}
 
@@ -150,7 +151,7 @@ Finally, we calculated the H index to assess the construct replicability of each
 
 In addition to confirmatory factor analysis, we also we also performed exploratory factor analysis (EFA) on the response data from each sample separately. The goal of the EFA was to observe what factor structure would emerge with no \emph{a priori} restrictions \citep{schmitt2018selecting}. We decided to extract two- and three- factor solutions based on the total number of factors in the bifactor S-1 models. We were particularly interested in seeing if a two-factor solution would produce the factors from model 3 (i.e. threat and deprivation); and if a three-factor solution would produce the three factors from model 4 (i.e. maltreatment by adults, peer victimization, reverse-scoring). 
 
-EFA was performed using the \textit{lavaan} (v0.6.11; \citealt{lavaan}) package available in R. Factors were extracted using the geomin \citep{yates1987multivariate} and cf-quartimax rotation criteria \citep{crawford1970general}, which were selected in order to extract simple factor structures with few cross-loadings. We used two rotation criteria in order to examine the generalizability of the factor solutions across multiple rotations. We again relied on traditional fit indices (i.e. RMSEA, CFI, TLI) to evaluate the goodness-of-fit of the exploratory models to the response data of both samples.
+EFA was performed using the \textit{lavaan} (v0.6.11; \citealt{lavaan}) package available in R. Factors were extracted using the oblique geomin \citep{yates1987multivariate} and cf-quartimax rotation criteria \citep{crawford1970general}, which were selected in order to extract simple factor structures with few cross-loadings. We used two rotation criteria in order to examine the generalizability of the factor solutions across multiple rotations. We again relied on traditional fit indices (i.e. RMSEA, CFI, TLI) to evaluate the goodness-of-fit of the exploratory models to the response data of both samples.
 
 \section{Results}
 
@@ -183,9 +184,9 @@ Replication & 1 &  1086 (702) &  0.031 &  0.954 &  0.952 &  0.065 (0.629) &  0.5
 \label{table:cfa_diagnostics}
 \end{table}
 
-Next we inspected the $Q_3$ indices for evidence of local dependence. For all models and samples, the maximum observed $Q_3$ index was greater than the 99\% percentile critical value. To understand the extent of local dependence for each model and sample, we visualized the $Q_3$ values for item pairs exceeding the critical value (Figure S3). The unidimensional model fits exhibited many locally dependent item pairs, especially among the peer victimization and reverse-scored items, suggesting possible underfactorization. By comparison, models 2 -- 4 exhibited many fewer locally dependent item pairs. Of these, the reasons for dependence were clear. For example, the dependence between items 17 (``Parents made inappropriate sexual comments or suggestions to your sibling or stepsibling'') and 18 (``Parents touched or fondled your sibling or stepsibling in a sexual way'') present for all models is easily understood as surface local dependence. Regardless, the estimated item discrimination parameters for each model fit seldom exceeded the normal range ($\alpha \leq 4$). That is, the degree of local dependence present in the models is not yielding substantial bias in parameter estimation \citep{edwards2018diagnostic}. Thus, we conclude that all model fits exhibit at least an acceptable fit to the response data.
+Next we inspected the $Q_3$ indices for evidence of local dependence. For all models and samples, the maximum observed $Q_3$ index was greater than the 99\% percentile critical value. To understand the extent of local dependence for each model and sample, we visualized the $Q_3$ values for item pairs exceeding the critical value (Figure \ref{fig:local_dependence}). The unidimensional model fits exhibited many locally dependent item pairs, especially among the peer victimization and reverse-scored items, suggesting possible underfactorization. By comparison, models 2 -- 4 exhibited many fewer locally dependent item pairs. Of these, the reasons for dependence were clear. For example, the dependence between items 17 (``Parents made inappropriate sexual comments or suggestions to your sibling or stepsibling'') and 18 (``Parents touched or fondled your sibling or stepsibling in a sexual way'') present for all models is easily understood as surface local dependence. Regardless, the estimated item discrimination parameters for each model fit seldom exceeded the normal range ($\alpha \leq 4$). That is, the degree of local dependence present in the models is not yielding substantial bias in parameter estimation \citep{edwards2018diagnostic}. Thus, we conclude that all model fits exhibit at least an acceptable fit to the response data.
 
-The results of the model comparison are also summarized in Table \ref{table:diagnostics}. Across samples, models 2 and 4 provided better fits to the data than models 1 and 3. Model 2 provided a numerically better fit to the data than model 4 in the original sample ($\Delta \text{LOO}$ = 7.9, se = 56.3), but the opposite was observed in the replication sample ($\Delta \text{LOO}$ = -24.0, se = 52.0). These differences in LOO-CV values, however, are both within four standard errors of the mean indicating only weak predictive improvements \citep{vehtari2022cv}. Thus the results suggest that models 2 and 4 provide approximately equal fits to the data, which is notable given that model 4 assumes a more parsimonious factor structure of the MACE.
+The results of the model comparison are also summarized in Table \ref{table:cfa_diagnostics}. Across samples, models 2 and 4 provided better fits to the data than models 1 and 3. Model 2 provided a numerically better fit to the data than model 4 in the original sample ($\Delta \text{LOO}$ = 7.9, se = 56.3), but the opposite was observed in the replication sample ($\Delta \text{LOO}$ = -24.0, se = 52.0). These differences in LOO-CV values, however, are both within four standard errors of the mean indicating only weak predictive improvements \citep{vehtari2022cv}. Thus the results suggest that models 2 and 4 provide approximately equal fits to the data, which is notable given that model 4 assumes a more parsimonious factor structure of the MACE.
 
 \subsection{Confirmatory item response models}
 
@@ -325,6 +326,24 @@ To conclude, we found that the factor structure of the MACE is essentially unidi
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 
+\subsection*{Additional self-report measures}
+
+In addition to the MACE, participants in both samples completed a number of additional self-report measures. Participants in the original sample completed multiple measures concerning psychiatric symptoms; these have already been reported \citep{teicher2015maltreatment}. The participants in the replication sample completed three additional self-report measures all assessing negative symptoms and motivation for rewards. Specifically, participants completed the Motivation and Pleasure scale \citep{llerena2013motivation}, the Self-evaluation of Negative Symptoms scale \citep{dollfus2016self}, and the revised Behavioral Inhibition / Behavioral Activation scale \citep{pagliaccio2016revising}.
+
+Following best practices for online research \citep{zorowitz2021inattentive}, several attention checks were embedded in the secondary self-report measures filled out by the replication sample. Specifically, we used infrequency items which are questions for which all  or virtually all attentive participants should provide the same response. Specifically, we used the following questions:
+
+\begin{enumerate}
+    \item I'm able to blink my eyes without difficulty. (all endorse)
+    \item I was motivated to write Mumfred Mumford's biography. (none endorse)
+    \item I worry about the 2001 Cricket World Cup. (none endorse)
+    \item Please select "Yes" and then select age "17". (instructed item)
+\end{enumerate}
+
+\noindent Prior to conducting the study, the infrequency items were piloted on an independent sample of participants to ensure that they elicited one dominant response. Participants were excluded from analysis if they responded incorrectly to one or more of these items.
+
+\pagebreak
+\subsection*{Supplementary tables \& figures}
+
 \begin{longtable}{P{0.02\linewidth}p{0.7\linewidth}|P{0.05\linewidth}P{0.05\linewidth}P{0.05\linewidth}}
 \centering
 \# & Item & \multicolumn{3}{c}{Tetrachoric Corr.} \\
@@ -384,15 +403,22 @@ To conclude, we found that the factor structure of the MACE is essentially unidi
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth,center]{figures/figS01.png}
-    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by sample. (A) Proportions of participants endorsing having experienced a maltreatment event by study sample. (B) The log odds that the proportion of endorsements are larger in one or the other sample. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items \end{spacing}}
+    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by sample. (A) Proportions of participants endorsing having experienced a maltreatment event by study sample. (B) The log odds that the proportion of endorsements are larger in one or the other sample. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items. \end{spacing}}
     \label{fig:dif_study}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth,center]{figures/figS02.png}
-    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by gender. (A) Proportions of participants endorsing having experienced a maltreatment event by study gender. (B) The log odds that the proportion of endorsements are larger in one or the other gender. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items \end{spacing}}
+    \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by gender. (A) Proportions of participants endorsing having experienced a maltreatment event by study gender. (B) The log odds that the proportion of endorsements are larger in one or the other gender. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items. \end{spacing}}
     \label{fig:dif_gender}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.05\textwidth,center]{figures/figS03.png}
+    \caption{\normalfont Yen's $Q_3$ values for item pairs exceeding the 99\% percentile critical value for each confirmatory item response model. Cells beneath the gray diagonal line correspond to the original sample, whereas cells above the line correspond to the replication sample. Notes: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse.}
+    \label{fig:local_dependence}
 \end{figure}
 
 \begin{figure}[H]
