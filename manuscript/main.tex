@@ -4,9 +4,9 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage[export]{adjustbox}
-\usepackage{setspace}
+\usepackage{booktabs}             % fancy latex tables
+\usepackage[export]{adjustbox}    % center wide tables on page
+\usepackage{setspace}             % adjust caption linespacing 
 
 % override apa6 section headers
 % https://tex.stackexchange.com/questions/125537/how-to-modify-subsubsection-header-apa6-cls
@@ -44,9 +44,7 @@ One critical challenge in measuring childhood maltreatment is the high co-occurr
 
 Bifactor models, one type of hierarchical factor models, are well-suited for addressing this issue \citep{bornovalova2020appropriate}. They assume that the covariance structure of a set of items can be accounted for by a general factor, reflecting shared variance across all items, and one or more specific factors, reflecting additional shared variance among subsets of items \citep{Reise2012-ql}. Crucially, bifactor models can be used to calculate model-based reliability statistics, including the omega hierarchical ($\omega_h$) and omega subscale ($\omega_s$) indices, which respectively measure the proportion of variance in total and subscale scores attributable to the general factor and specific factors \citep{reise2013applying, rodriguez2016evaluating}. Applied to the MACE scale, these indices can inform researchers as to whether subscale scores or composite indices for particular types of maltreatment are interpretable as such, or if they instead predominantly reflect overall maltreatment. 
 
-% summary of paper paragraph tk
-
-Data availability statement to conclude
+summary of paper paragraph tk. data availability statement to conclude
 
 \section{Methods}
 
@@ -84,7 +82,7 @@ The second sample of participants (N=687) were recruited from the Prolific Acade
     \hspace{1em} Rather not say            &   0  (0.0\%) &  17  (2.9\%) & \\
     \bottomrule
     \end{tabular*}
-    \caption{\normalfont Demographics of the two samples included in this study. The original sample was recruited and first reported by \cite{teicher2015maltreatment}. The replication sample was recruited by the current authors for the purposes of this study.}
+    \caption{\normalfont Demographics of the two samples included in this study. The original sample was recruited and reported by \cite{teicher2015maltreatment}. The replication sample was recruited by the current authors for the purposes of this study.}
     \label{tab:demographics}
 \end{table}
 
@@ -123,7 +121,8 @@ The third model we fit investigated a conceptual model of maltreatment that dist
 \begin{figure}[t!]
     \centering
     \includegraphics[width=1.1\textwidth,center]{figures/fig01.png}
-    \caption{Caption}
+    \captionsetup{width=1.1\textwidth}
+    \caption{\normalfont The structure of the four competing confirmatory factor models of the MACE. (A) One-factor (unidimensional) model. (B) Bifactor model with 10 specific factors (one per MACE subscale). (C) Bifactor S-1 model with 1 specific factor (neglect). (D) Bifactor S-1 model with 2 specific factors (peer victimization, reverse-scoring). Notes: G = general maltreatment; VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse.}
     \label{fig:models}
 \end{figure}
 
@@ -151,13 +150,13 @@ Finally, we calculated the H index to assess the construct replicability of each
 
 In addition to confirmatory factor analysis, we also we also performed exploratory factor analysis (EFA) on the response data from each sample separately. The goal of the EFA was to observe what factor structure would emerge with no \emph{a priori} restrictions \citep{schmitt2018selecting}. We decided to extract two- and three- factor solutions based on the total number of factors in the bifactor S-1 models. We were particularly interested in seeing if a two-factor solution would produce the factors from model 3 (i.e. threat and deprivation); and if a three-factor solution would produce the three factors from model 4 (i.e. maltreatment by adults, peer victimization, reverse-scoring). 
 
-EFA was performed using the \textit{lavaan} (v0.6.11; \citealt{lavaan}) package available in R. Factors were extracted using the geomin \citep{yates1987multivariate} and cf-quartimax rotation criteria \citep{crawford1970general}, which were selected in order to extract simple factor structures with few cross-loadings. We used two rotation criteria in order to examine the generalizability of the factor solutions across multiple rotations. 
+EFA was performed using the \textit{lavaan} (v0.6.11; \citealt{lavaan}) package available in R. Factors were extracted using the geomin \citep{yates1987multivariate} and cf-quartimax rotation criteria \citep{crawford1970general}, which were selected in order to extract simple factor structures with few cross-loadings. We used two rotation criteria in order to examine the generalizability of the factor solutions across multiple rotations. We again relied on traditional fit indices (i.e. RMSEA, CFI, TLI) to evaluate the goodness-of-fit of the exploratory models to the response data of both samples.
 
 \section{Results}
 
 \subsection{Goodness-of-fit \& model comparison}
 
-The goodness-of-fit indices for each model and sample are summarized in Table \ref{table:diagnostics}. According to the traditional indices, each model provided at least an acceptable fit to the response data. All RMSEA value were <0.05 and the majority of CFI and TLI values were >0.95. The only exception were for the fits of models 1 and 3 to the original sample data, which exhibited only acceptable fits (i.e. CFI/TLI > 0.90). In general, model fits were better for the replication sample data than for the original sample. Furthermore, all of the posterior predictive p-values corresponding to the $\chi^2_{NC}$ discrepancy measure were within the acceptable range. Thus all models were sufficiently able to reproduce the distribution of overall severity scores for each sample.
+The goodness-of-fit indices for each model and sample are summarized in Table \ref{table:cfa_diagnostics}. According to the traditional indices, each model provided at least an acceptable fit to the response data. All RMSEA value were <0.05 and the majority of CFI and TLI values were >0.95. The only exception were for the fits of models 1 and 3 to the original sample data, which exhibited only acceptable fits (i.e. CFI/TLI > 0.90). In general, model fits were better for the replication sample data than for the original sample. Furthermore, all of the posterior predictive p-values corresponding to the $\chi^2_{NC}$ discrepancy measure were within the acceptable range. Thus all models were sufficiently able to reproduce the distribution of overall severity scores for each sample.
 
 \begin{table}[t!]
 \small
@@ -180,8 +179,8 @@ Replication & 1 &  1086 (702) &  0.031 &  0.954 &  0.952 &  0.065 (0.629) &  0.5
 \end{tabular}
 \end{adjustbox}
 \captionsetup{width=1.1\textwidth}
-\caption{\normalfont Fit statistics for the confirmatory factor models by sample. LOO-CV values are presented in deviance scale (i.e. smaller values indicate better fit). Abbreviations: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; PPP = posterior predictive p-value; $Q3_{\max}$ = maximum $Q_3$ value in the sample for the model; $Q3_{\text{crit}}$ = critical $Q_3$ value for the model; LOO-CV = leave-one-out cross-validation.}
-\label{table:diagnostics}
+\caption{\normalfont Fit statistics for the confirmatory factor models by sample. LOO-CV values are presented in deviance scale (i.e. smaller values indicate better fit). Notes: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; PPP = posterior predictive p-value; $Q3_{\max}$ = maximum $Q_3$ value in the sample for the model; $Q3_{\text{crit}}$ = critical $Q_3$ value for the model; LOO-CV = leave-one-out cross-validation.}
+\label{table:cfa_diagnostics}
 \end{table}
 
 Next we inspected the $Q_3$ indices for evidence of local dependence. For all models and samples, the maximum observed $Q_3$ index was greater than the 99\% percentile critical value. To understand the extent of local dependence for each model and sample, we visualized the $Q_3$ values for item pairs exceeding the critical value (Figure S3). The unidimensional model fits exhibited many locally dependent item pairs, especially among the peer victimization and reverse-scored items, suggesting possible underfactorization. By comparison, models 2 -- 4 exhibited many fewer locally dependent item pairs. Of these, the reasons for dependence were clear. For example, the dependence between items 17 (``Parents made inappropriate sexual comments or suggestions to your sibling or stepsibling'') and 18 (``Parents touched or fondled your sibling or stepsibling in a sexual way'') present for all models is easily understood as surface local dependence. Regardless, the estimated item discrimination parameters for each model fit seldom exceeded the normal range ($\alpha \leq 4$). That is, the degree of local dependence present in the models is not yielding substantial bias in parameter estimation \citep{edwards2018diagnostic}. Thus, we conclude that all model fits exhibit at least an acceptable fit to the response data.
@@ -195,9 +194,19 @@ In the following sections, we interpret the fit of each confirmatory item respon
 \begin{figure}[t!]
     \centering
     \includegraphics[width=1.1\textwidth,center]{figures/fig02.png}
-    \caption{Standardized factor loadings from the four models estimated from the original sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
+    \captionsetup{width=1.1\textwidth}
+    \caption{Standardized factor loadings from the four models estimated from the original sample. Notes: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse.  ** Reverse-scored items.}
     \label{fig:loadings_original}
 \end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.1\textwidth,center]{figures/fig03.png}
+    \captionsetup{width=1.1\textwidth}
+    \caption{Standardized factor loadings from the four models estimated from the online sample. Notes: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
+    \label{fig:loadings_online}
+\end{figure}
+
 
 \subsubsection{Model 1: Unidimensional model of the MACE}
 
@@ -211,13 +220,6 @@ In sum, the results provide evidence on average in favor a unidimensional model 
 
 Next we inspect the bifactor model with 10 specific factors, one per MACE subscale (model 2). In the original sample, the loadings on the general maltreatment factor ranged between 0.235 and 0.864, with an average value of 0.575 (95\% HDI = 0.556 -- 0.593). In the replication sample, the general factor loadings ranged between 0.299 and 0.827, with an average value of 0.580 (95\% HDI = 0.560 -- 0.601). The relative parameter bias was marginal for both samples (original = 2.1\%; replication = 2.7\%), suggesting little bias in the factor loadings of the unidimensional models due to multidimensionality.  
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=1.1\textwidth,center]{figures/fig03.png}
-    \caption{Standardized factor loadings from the four models estimated from the online sample. VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; WSV = witnessing sibling vioence; WIPV = witnessing inter-parental violence; EN = emotional neglect; PN = physical neglect; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. ** Reverse-scored items.}
-    \label{fig:loadings_online}
-\end{figure}
-
 By contrast the standardized loadings on the specific factors were much smaller in magnitude, seldom exceeding loadings on the general factor. In the original dataset, the specific factor loadings ranged 0.014 to 0.797 with an average value of 0.313 (95\% HDI = 0.285 -- 0.341). In the replication dataset, the range was between 0.043 and 0.698, with an average value of 0.343 (95\% HDI = 0.315 -- 0.369). Only items from the peer victimization subscales (i.e. peer verbal \& physical abuse) had specific factor loadings of roughly equal or greater magnitude to those on the general factor. 
 
 \begin{table}[h!]
@@ -226,7 +228,7 @@ By contrast the standardized loadings on the specific factors were much smaller 
 \toprule
 & & & \multicolumn{4}{c}{Original} & \multicolumn{4}{c}{Replication} \\
 \cmidrule(lr){4-7}\cmidrule(lr){8-11}
-Model & Subscale & PUC & ECV & $\omega$ & $\omega_{h/s}$ & H & ECV & $\omega$ & $\omega_{h/s}$ & H \\
+Model & Factor & PUC & ECV & $\omega$ & $\omega_{h/s}$ & H & ECV & $\omega$ & $\omega_{h/s}$ & H \\
 \midrule
 2 & General &  0.912 & 0.716 &  0.963 &   0.924 &  0.964 & 0.697 & 0.965 & 0.924 & 0.961 \\
 & VA        &        &       &  0.909 &   0.069 &  0.273 &       & 0.893 & 0.162 & 0.478 \\
@@ -249,7 +251,7 @@ Model & Subscale & PUC & ECV & $\omega$ & $\omega_{h/s}$ & H & ECV & $\omega$ & 
 \bottomrule
 \end{tabular*}
 \captionsetup{width=1.\textwidth}
-\caption{\normalfont Model-based reliability indices for the three bifactor models. Abbreviations: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse; ECV = explained common variance.}
+\caption{\normalfont Model-based reliability indices for the three bifactor models. Notes: PUC = proportion uncontaminated correlations; ECV = explained common variance; VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse.}
 \label{table:reliability}
 \end{table}
 
@@ -279,16 +281,16 @@ Briefly, we note that the composite scores formed by the reverse-scored items wa
 
 \subsection{Exploratory factor analysis}
 
-The standardized factor loadings for the two- and three-factor solutions generated by the cf-quartimax rotation are summarized in Figure \ref{fig:efa}. (The corresponding factor loadings produced by the geomin rotation were similar and are presented in Figure S4.) In the two-factor solution for the original sample, there was a primary adult maltreatment factor and a secondary peer victimization factor. In contrast, the replication sample produced a primary adult/peer maltreatment factor with a secondary reverse-scoring factor. 
-
-The three-factor solution for each sample were similar. The analysis produced a primary adult maltreatment factor with secondary peer victimization and reverse-scoring factors. (To note items concerning sexual abuse loaded more strongly on the peer victimization scale in the replication sample, warranting some caution in interpreting the replicability of factor structures.) With the oblique rotation, we observed only modest inter-factor correlations (original: mean $r$ = 0.371; replication: mean $r$ = 0.269). To conclude, the structure of both the two- and three-factor exploratory factor solutions resembled the structure of the bifactor S-1 model with two specific factors (model 4), providing further support for this model of responses on the MACE. 
-
 \begin{figure}[t!]
     \centering
     \includegraphics[width=1\textwidth,center]{figures/fig04.png}
-    \caption{Caption}
-    \label{fig:efa}
+    \caption{\normalfont Standardized factor loadings for the 2- and 3-factor solutions produced by the cf-quartimax rotation for original sample (top row) and replication sample (bottom row). Notes: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. Only factor loadings $\geq$ 0.30 are shown. ** Reverse-scored items.}
+    \label{fig:efa_cf}
 \end{figure}
+
+The goodness-of-fit of the exploratory factor models to the response data of both samples are summarized in Table \ref{tab:efa_diagnostics}. Briefly, the fit indices indicated that all models provided an adequate fit to the data. The standardized factor loadings for the 2- and 3-factor solutions produced by the cf-quartimax rotation are summarized in Figure \ref{fig:efa_cf}. (The corresponding factor loadings produced by the geomin rotation were qualitatively similar and are presented in Figure \ref{fig:efa_geomin}.) In the 2-factor solution for the original sample, there was a primary adult maltreatment factor and a secondary peer victimization factor. In contrast, the replication sample produced a primary adult/peer maltreatment factor with a secondary reverse-scoring factor. 
+
+The three-factor solution for each sample were similar. The analysis produced a primary adult maltreatment factor with secondary peer victimization and reverse-scoring factors. (To note items concerning sexual abuse loaded more strongly on the peer victimization scale in the replication sample, warranting some caution in interpreting the replicability of factor structures.) With the oblique rotation, we observed only modest inter-factor correlations (original: mean $r$ = 0.371; replication: mean $r$ = 0.269). To conclude, the structure of both the two- and three-factor exploratory factor solutions resembled the structure of the bifactor S-1 model with two specific factors (model 4), providing further support for this model of responses on the MACE. 
 
 \section{Discussion}
 
@@ -362,6 +364,23 @@ To conclude, we found that the factor structure of the MACE is essentially unidi
 \label{tab:dependence}
 \end{longtable}
 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llccccc}
+    \toprule
+    Sample      & Model    & $\chi^2$ ($df$) & RMSEA & CFI & TLI & SRMR \\
+    \midrule
+    Original    & 2-factor & 1876 (664) & 0.049 & 0.962 & 0.957 & 0.122 \\
+                & 3-factor & 1237 (627) & 0.036 & 0.981 & 0.977 & 0.105 \\
+    \midrule
+    Replication & 2-factor & 1737 (664) & 0.052 & 0.961 & 0.957 & 0.108 \\
+                & 3-factor & 1227 (627) & 0.040 & 0.978 & 0.974 & 0.097 \\
+    \bottomrule
+    \end{tabular}
+    \caption{\normalfont Fit statistics for the exploratory factor models by sample. Notes: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; SRMR = standardized root mean square residual.}
+    \label{tab:efa_diagnostics}
+\end{table}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.82\textwidth,center]{figures/figS01.png}
@@ -374,6 +393,13 @@ To conclude, we found that the factor structure of the MACE is essentially unidi
     \includegraphics[width=0.82\textwidth,center]{figures/figS02.png}
     \caption{\normalfont \begin{spacing}{1.25} Differential item functioning by gender. (A) Proportions of participants endorsing having experienced a maltreatment event by study gender. (B) The log odds that the proportion of endorsements are larger in one or the other gender. Dotted lines indicate the threshold for large DIF recommended by \cite{hidalgo2014binary}. ** Reverse-scored items \end{spacing}}
     \label{fig:dif_gender}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,center]{figures/figS04.png}
+    \caption{\normalfont Standardized factor loadings for the 2- and 3-factor solutions produced by the geomin rotation for original sample (top row) and replication sample (bottom row). Notes: VA = verbal abuse; PA = physical abuse; NVEA = nonverbal emotional abuse; SA = sexual abuse; EN = emotional neglect; PN = physical neglect; WSV = witnessing sibling violence; WIPV = witnessing inter-parental violence; PeerVA = peer verbal abuse; PeerPA = peer physical abuse. Only factor loadings $\geq$ 0.30 are shown. ** Reverse-scored items.}
+    \label{fig:efa_geomin}
 \end{figure}
 
 \end{document}
