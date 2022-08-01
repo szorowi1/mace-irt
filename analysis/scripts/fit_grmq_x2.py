@@ -338,11 +338,7 @@ for study in studies:
 
             ## Define item indices.
             ix, = np.where(K == k)
-
-            ## Compute cell proportions (observed).
-            prob_obs = Y[ix].mean()
-            C1_obs.append(prob_obs)
-
+            
             ## Compute cell proportions (predicted).
             prop_hat = Y_hat[::thin,ix].mean(axis=1)
             C1_hat.append(prop_hat)
@@ -359,11 +355,7 @@ for study in studies:
             while ix1.size != ix2.size:
                 if ix1.size > ix2.size: ix1 = ix1[np.in1d(J[ix1], J[ix2])]
                 elif ix2.size > ix1.size: ix2 = ix2[np.in1d(J[ix2], J[ix1])]
-
-            ## Compute cell proportions (observed).
-            prop_obs = binprop(Y[ix1] + 2 * Y[ix2])
-            C2_obs.append(prop_obs[-1])
-
+                
             ## Compute cell proportions (predicted).
             prop_hat = np.apply_along_axis(binprop, 1, Y_hat[::thin,ix1] + 2 * Y_hat[::thin,ix2])
             C2_hat.append(prop_hat[:,-1])
