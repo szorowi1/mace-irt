@@ -10,7 +10,7 @@ ROOT_DIR = dirname(dirname(os.path.realpath(__file__)))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 ## I/O parameters.
-stan_model = 'baseline'
+stan_model = 'grmb'
 study = sys.argv[1]
 
 ## Sampling parameters.
