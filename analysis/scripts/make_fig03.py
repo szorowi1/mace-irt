@@ -77,7 +77,7 @@ loadings = loadings.sort_values(['subscale','item']).set_index(['subscale','item
 
 ## Extract loadings.
 X1 = loadings.values
-X2 = loadings.applymap(np.digitize, bins=[0.35, 0.6]).values
+X2 = loadings.applymap(np.digitize, bins=[0.3, 0.6]).values
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Define plot parameters.
