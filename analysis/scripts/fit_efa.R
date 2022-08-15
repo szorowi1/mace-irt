@@ -11,6 +11,11 @@ set.seed(47404)
 ## Load data.
 data = read.csv('../data/mace.csv')
 
+## Apply rejections. 
+reject = read.csv('../data/covariates.csv')
+data = merge(data, reject[,c('subject','infreq')], by='subject')
+data = data[data$infreq < 1.0,]
+
 ## Define studies.
 studies = list('teicher2015', 'tuominen2022')
 

@@ -45,19 +45,19 @@
 
 \abstract{
 
-\textbf{Background}: Typically measures of childhood maltreatment collect information about several types of abuse and maltreatment. The subscales of the retrospective Maltreatment and Abuse Chronology of Exposure (MACE) scale measure 10 such types. Since different types of maltreatment often co-occur, it is not clear whether subscale measures can be used to reflect constructs unique from from overall maltreatment.
+\noindent \textbf{Background}: Typically measures of childhood maltreatment collect information about several types of abuse and maltreatment. The subscales of the retrospective Maltreatment and Abuse Chronology of Exposure (MACE) scale measure 10 such types. Since different types of maltreatment often co-occur, it is not clear whether subscale measures can be used to reflect constructs unique from from overall maltreatment.
 
 \hfill 
 
-\textbf{Methods}: Here, we investigated the factor structure of the MACE scale in two independent samples (N=1051 \& N=582). We used both confirmatory and exploratory item response modeling.
+\noindent \textbf{Methods}: Here, we investigated the factor structure of the MACE scale in two independent samples (N=1051 \& N=582). We used both confirmatory and exploratory item response modeling.
 
 \hfill
 
-\textbf{Results}: We found the MACE total score to be a reliable and valid measure of general maltreatment. Confirmatory item response models provided strong evidence for unidimensionality of the MACE, with the exception of a potential peer victimization factor. That is, most items in the MACE load on general factor and apart from peer victimization very little variance was explained by other subscales. Exploratory factor modeling further supported these findings. 
+\noindent \textbf{Results}: We found the MACE total score to be a reliable and valid measure of general maltreatment. Confirmatory item response models provided strong evidence for unidimensionality of the MACE, with the exception of a potential peer victimization factor. That is, most items in the MACE load on general factor and apart from peer victimization very little variance was explained by other subscales. Exploratory factor modeling further supported these findings. 
 
 \hfill
 
-\textbf{Conclusions}: The MACE is essentially a unidimensional scale. Apart from a separate peer victimization factor, researchers should refrain from using subscales data separately since they mostly reflect overall maltreatment.  
+\noindent \textbf{Conclusions}: The MACE is essentially a unidimensional scale. Apart from a separate peer victimization factor, researchers should refrain from using subscales data separately since they mostly reflect overall maltreatment.  
 \hfill \break
 }
 
@@ -165,7 +165,7 @@ The third model was motivated by a theoretical account of childhood maltreatment
     \label{fig:models}
 \end{figure}
 
-The fourth and final model proposes a more parsimonious structure of the MACE based on the content of its items. Items on the MACE can be organized according to the source of maltreatment: parents (or other adults in the home) and peers. Thus, we hypothesized there would be two factors underlying responses on the MACE: a primary maladaptive parenting factor and a secondary peer victimization factor. Based on preliminary model fitting, we also suspected the presence of a tertiary methods factor affecting the six reverse-scored items. We initially fit a bifactor model in which all items loaded onto a general maltreatment factor and one of three specific factors (maladaptive parenting, peer victimization, reverse-scoring); however, we observed vanishing loadings on the first specific factor. As such, we instead fit a bifactor S-1 model where all items load onto a general maltreatment factor, and the peer victimization \& reverse-scoring items additionally load onto their own specific factors (Figure \ref{fig:models}d). This model will be used to evaluate if the MACE can produce peer victimization reliable subscale scores distinguishable from general maltreatment. 
+The fourth and final model proposes a more parsimonious structure of the MACE based on the content of its items. Items on the MACE can be organized according to the source of maltreatment: parents (or other adults in the home) and peers. Thus, we hypothesized there would be two factors underlying responses on the MACE: a primary parental maltreatment factor and a secondary peer victimization factor. Based on preliminary model fitting, we also suspected the presence of a tertiary methods factor affecting the six reverse-scored items. We initially fit a bifactor model in which all items loaded onto a general maltreatment factor and one of three specific factors (parental maltreatment, peer victimization, reverse-scoring); however, we observed vanishing loadings on the first specific factor. As such, we instead fit a bifactor S-1 model where all items load onto a general maltreatment factor, and the peer victimization \& reverse-scoring items additionally load onto their own specific factors (Figure \ref{fig:models}d). This model will be used to evaluate if the MACE can produce peer victimization reliable subscale scores distinguishable from general maltreatment. 
 
 All confirmatory item factor models were estimated within a Bayesian framework using Hamiltonian Monte Carlo as implemented in Stan (v2.26; \citealt{carpenter2017stan}). For each model, four separate chains with randomized start values each took 3,000 samples from the posterior. The first 2,000 samples from each chain were discarded, so that 4,000 post-warmup samples from the posterior were retained. The $\hat{R}$ values for all parameters were less than 1.01, indicating acceptable convergence between chains, and there were no divergent transitions in any chain. 
 
@@ -318,7 +318,7 @@ Briefly, we note that the subscale scores formed by the reverse-scored items wer
 
 {\begin{spacing}{0.2} \hfill \\ \end{spacing}} \subsection{Exploratory factor analysis}
 
-The goodness-of-fit measures for the exploratory factor models to the response data by sample are summarized in Table \ref{tab:efa_diagnostics}. The fit indices indicated that all exploratory models provided an adequate fit to the data. The standardized factor loadings for the 2- and 3-factor solutions produced by the cf-quartimax rotation are presented in Figure \ref{fig:efa_cf}. (The corresponding factor loadings produced by the geomin rotation were qualitatively similar and are presented in Figure \ref{fig:efa_geomin}.) In the 2-factor solution for the original sample, we observed a primary maladaptive parenting factor and a secondary peer victimization factor. In contrast, the replication sample produced a primary maladaptive parenting/peer maltreatment factor with a secondary reverse-scoring factor. Neither 2-factor solution precisely resembled the threat-deprivation factor structure of confirmatory model 3.
+The goodness-of-fit measures for the exploratory factor models to the response data by sample are summarized in Table \ref{tab:efa_diagnostics}. The fit indices indicated that all exploratory models provided an adequate fit to the data. The standardized factor loadings for the 2- and 3-factor solutions produced by the cf-quartimax rotation are presented in Figure \ref{fig:efa_cf}. (The corresponding factor loadings produced by the geomin rotation were qualitatively similar and are presented in Figure \ref{fig:efa_geomin}.) In the 2-factor solution for the original sample, we observed a primary parental maltreatment factor and a secondary peer victimization factor. In contrast, the replication sample produced a primary parental maltreatment/peer maltreatment factor with a secondary reverse-scoring factor. Neither 2-factor solution precisely resembled the threat-deprivation factor structure of confirmatory model 3.
 
 \begin{figure}[t!]
     \centering
@@ -327,7 +327,7 @@ The goodness-of-fit measures for the exploratory factor models to the response d
     \label{fig:efa_cf}
 \end{figure}
 
-The 3-factor solution for each sample were similar. EFA produced a primary maladaptive parenting factor with secondary peer victimization and reverse-scoring factors. (Interestingly, items concerning sexual abuse loaded more strongly on the peer victimization scale in the replication sample, raising some questions about the replicability of the factor structures.) To conclude, the structure of both the 2- and 3-factor exploratory factor models resembled the bifactor S-1 model with two specific factors (model 4), providing further support for that model of the factor structure of the MACE. 
+The 3-factor solution for each sample were similar. EFA produced a primary parental maltreatment factor with secondary peer victimization and reverse-scoring factors. Interestingly, items concerning sexual abuse loaded more strongly on the peer victimization scale in the replication sample, raising some questions about the replicability of the factor structures. To conclude, the structure of both the 2- and 3-factor exploratory factor models resembled the bifactor S-1 model with two specific factors (model 4), providing further support for that model of the factor structure of the MACE. 
 
 \section{Discussion}
 
@@ -436,8 +436,8 @@ This discussion in turn raises a second question: whether it is reasonable for i
     Original    & 2-factor & 1876 (664) & 0.049 & 0.962 & 0.957 & 0.122 \\
                 & 3-factor & 1237 (627) & 0.036 & 0.981 & 0.977 & 0.105 \\
     \midrule
-    Replication & 2-factor & 1737 (664) & 0.052 & 0.961 & 0.957 & 0.108 \\
-                & 3-factor & 1227 (627) & 0.040 & 0.978 & 0.974 & 0.097 \\
+    Replication & 2-factor & 1612 (664) & 0.051 & 0.961 & 0.957 & 0.121 \\
+                & 3-factor & 1100 (627) & 0.037 & 0.981 & 0.977 & 0.111 \\
     \bottomrule
     \end{tabular}
     \caption{\normalfont Fit statistics for the exploratory factor models by sample. Notes: RMSEA = root mean square error of approximation; CFI = comparative fit index; TLI = Tucker-Lewis index; SRMR = standardized root mean square residual.}
