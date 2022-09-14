@@ -23,7 +23,7 @@ order = ['VA','PA','NVEA','SA','WSV','WIPV','EN','PN','PeerVA','PeerPA']
 thresh = 0.3
 
 ## Define rotation.
-rotation = 'cf-quartimax'
+rotation = 'geomin'
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Load and prepare design matrix.
@@ -110,4 +110,4 @@ for i, study in enumerate(['teicher2015','tuominen2022']):
             cbar.set_label(r'Factor Loadings', fontsize=16, labelpad=10)
             cbar.ax.tick_params(labelsize=11) 
             
-plt.savefig(os.path.join(ROOT_DIR, '..', 'figures', 'fig04.png'), dpi=100)
+plt.savefig(os.path.join(ROOT_DIR, '..', 'figures', 'figS05.png'), dpi=100)

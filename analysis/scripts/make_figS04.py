@@ -23,7 +23,7 @@ order = ['VA','PA','NVEA','SA','WSV','WIPV','EN','PN','PeerVA','PeerPA']
 thresh = 0.3
 
 ## Define rotation.
-rotation = 'geomin'
+rotation = 'cf-quartimax'
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 ### Load and prepare design matrix.
