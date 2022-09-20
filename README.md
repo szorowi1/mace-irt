@@ -1,6 +1,6 @@
 # Bifactor models of the MACE
 
-Code and data for Zorowitz & Tuominen (submitted), "The MACE is essentially unidimensional: Bifactor models of the 'Maltreatment and Abuse Chronology of Exposure' scale".
+Code and data for Zorowitz & Tuominen (submitted), "Confirmatory factor analysis of the Maltreatment and Abuse Chronology of Exposure (MACE) scale: Evidence for essential unidimensionality".
 
 ## Author
 

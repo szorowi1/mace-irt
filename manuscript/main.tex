@@ -1,4 +1,4 @@
-\documentclass[letterpaper,man,natbib,noextraspace,floatsintext,longtable]{apa6}  
+\documentclass[letterpaper,man,natbib,noextraspace,floatsintext,longtable,12pt]{apa6}  
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
@@ -9,6 +9,7 @@
 \usepackage{setspace}             % adjust caption linespacing 
 \usepackage{multibib}             % references in supplement
 \usepackage{hyperref}             % manage hyperlink colors
+\usepackage{hanging}
 
 % override apa6 section headers
 % https://tex.stackexchange.com/questions/125537/how-to-modify-subsubsection-header-apa6-cls
@@ -38,34 +39,57 @@
     citecolor=blue
 }
 
+% define title page
 \title{Confirmatory factor analysis of the Maltreatment and Abuse Chronology of Exposure (MACE) scale: Evidence for essential unidimensionality}
 \shorttitle{Confirmatory factor analysis of the MACE}
-\author{Samuel Zorowitz$^1$, Lauri Tuominen$^{2}$}
+\author{Samuel Zorowitz$^{1*}$, Lauri Tuominen$^{2}$}
 \affiliation{$^1$Princeton Neuroscience Institute, Princeton University, USA\\$^2$The Royal’s Institute of Mental Health Research, University of Ottawa, Canada}
 
+% add author note
+\authornote{
+
+\noindent *Corresponding author: zorowitz@princeton.edu
+
+{\begin{hangparas}{.25in}{1} Acknowledgments: The authors wish to thank Dr. Robyn McQuaid for thoughtful feedback on this manuscript. \end{hangparas}}
+
+{\begin{hangparas}{.25in}{1} \noindent Ethics approval: The Institutional Review Board of the University of Ottawa (\#2021003) approved this study. \end{hangparas}}
+
+{\begin{hangparas}{.25in}{1} \noindent Funding sources: This research was funded by the Royal's Emerging Research Innovators in Mental Health program at the University of Ottawa Institute of Mental Health Research and a National Science Foundation Graduate Research Fellowship. \end{hangparas}}
+
+\noindent Conflict of interest: The authors have no conflicts of interest to declare.
+
+}
+
+% add abstract
 \abstract{
 
-\noindent \textbf{Background}: The Maltreatment and Abuse Chronology of Exposure (MACE) scale is a retrospective self-report scale that measures 10 distinct types of childhood maltreatment. Despite its increasing use, the factor structure of the MACE has not been thoroughly investigated. As such, the viability of the MACE total and subscale scores are uncertain. The aim of the present study was to investigate the factor structure of the MACE and to quantify the reliability of its total and subscale scores. 
+\noindent \textbf{Background}: The Maltreatment and Abuse Chronology of Exposure (MACE) scale is a retrospective self-report scale that measures 10 distinct types of childhood maltreatment. Despite its increasing use, the factor structure of the MACE has not been thoroughly investigated. As such, the viability of the MACE total and subscale scores are uncertain.
 
 {\begin{spacing}{1.25} \hfill \\ \end{spacing}}
 
-\noindent \textbf{Methods}: We evaluated a series of confirmatory item factor models fit to the responses of two independent samples of participants (N=1051 \& N=582) who completed the MACE. The models included hierarchical (bifactor) models. We used model-based indices to estimate the reliability of the MACE total and subscale scores, and to quantify the essential unidimensionality of the scale.
+\noindent \textbf{Objectives}: The current study investigated the factor structure of the MACE in order to quantify the reliability of its total and subscale scores.
 
 {\begin{spacing}{1.25} \hfill \\ \end{spacing}}
 
-\noindent \textbf{Results}: We found the MACE total score was a reliable and valid measure of overall childhood maltreatment. In contrast, although MACE subscale scores exhibited adequate reliability, we found that the vast majority of reliable variance in these scores reflected general maltreatment and not any particular type of maltreatment as intended. We also found that the MACE is essentially unidimensional, and exhibits evidence of differential item functioning by gender.
+\noindent \textbf{Participants and setting}: Two independent samples of participants (N=1051 \& N=582) who completed the MACE were included in this study.
 
 {\begin{spacing}{1.25} \hfill \\ \end{spacing}}
 
-\noindent \textbf{Conclusions}: Our results provide support for a one-factor structure of the MACE, as well as continued use of the MACE total score. Our results caution against the use of MACE subscale scores, which have little practical use given that they provide little unique or reliable information above and beyond the total score.
+\noindent \textbf{Methods}: Using confirmatory item response models, we tested one-factor and several bifactor models of participants' responses. We used model-based indices to estimate the reliability of the MACE total and subscale scores, and to quantify the essential unidimensionality of the scale. 
 
-\hfill \break
+{\begin{spacing}{1.25} \hfill \\ \end{spacing}}
+
+\noindent \textbf{Results}: We found the MACE total score was a reliable and valid measure of overall childhood maltreatment. In contrast, although we found MACE subscale scores exhibited adequate reliability, the vast majority of their reliable variance reflected general maltreatment and not any particular type of maltreatment as intended. We also found that the MACE is essentially unidimensional and some of its items exhibit of differential item functioning by gender. 
+
+{\begin{spacing}{1.25} \hfill \\ \end{spacing}}
+
+\noindent \textbf{Conclusions}: Our results provide support for a one-factor structure of the MACE, as well as continued use of the MACE total score. Our results caution against the use of MACE subscale scores, which have little practical use insofar that they provide little unique, reliable information above and beyond the total score.
+
+{\begin{spacing}{1.15} \hfill \\ \end{spacing}}
 
 }
 
 \keywords{child maltreatment, reliability, item response theory, bifactor model}
-
-\authornote{This research was funded by the Royal's Emerging Research Innovators in Mental Health program at the University of Ottawa Institute of Mental Health Research and a National Science Foundation Graduate Research Fellowship. The authors wish to thank Dr. Robyn McQuaid for thoughtful feedback on this manuscript. The authors have no conflicts of interest to declare.}
 
 \begin{document}
 
@@ -75,9 +99,9 @@
 
 Childhood maltreatment is an unfortunately common experience for children around the world \citep{stoltenborgh2015prevalence}. It is a risk factor for multiple poor outcomes later in life including the development of mental illness \citep{kessler2010childhood}, cognitive impairment \citep{su2019does}, and poor physical health \citep{wegman2009meta}. Childhood maltreatment also predicts worse treatment outcomes for several psychiatric disorders \citep{nanni2012childhood, thomas2019childhood}. Thus, the reliable and valid assessment of childhood maltreatment is an important research goal in order to refine our understanding of the link between maltreatment and health outcomes; augment treatment strategies for victims of childhood maltreatment; and ultimately design better interventions to prevent maltreatment in the first place. 
 
-There already exist many measures of childhood abuse and maltreatment for researchers to choose from \citep{saini2019systematic}. One recently developed measure, the Maltreatment and Abuse Chronology of Exposure scale (MACE; \citealt{teicher2015maltreatment}), has a number of notable advantages. First, the MACE is a 52-item retrospective self-report scale composed of 10 subscales, each of which measures a unique type of childhood maltreatment. The content of six of these subscales overlap with other childhood maltreatment scales (e.g. physical abuse, neglect), whereas the remaining four are less commonly represented in other scales (e.g. peer victimization, witnessing domestic violence). Second, the items in the MACE were carefully selected to measure maltreatment of increasing severity in order to finely differentiate people with differing exposure levels. Third, the MACE also asks for the onset and duration of maltreatment experiences, which is necessary for investigating how the timing of abuse shapes development. Finally, the MACE was originally developed to provide two measures: a total score (number of overall maltreatment experiences) and a multiplicity score (number of types of maltreatment experienced). These scores have excellent temporal stability, convergent validity with other childhood maltreatment scales, and good predictive validity for a multitude of psychiatric symptoms \citep{teicher2015maltreatment}. For these reasons, the MACE has been included as among the best measures of childhood maltreatment currently available \citep{saini2019systematic, georgieva2022systematic}.
+There already exist many measures of childhood abuse and maltreatment for researchers to choose from \citep{saini2019systematic}. One recently developed measure, the Maltreatment and Abuse Chronology of Exposure scale (MACE; \citealt{teicher2015maltreatment}), has a number of notable advantages. First, the MACE is a 52-item retrospective self-report scale composed of 10 subscales, each of which measures a unique type of childhood maltreatment. The content of six of these subscales overlap with other childhood maltreatment scales (e.g. physical abuse, neglect), whereas the remaining four are less commonly represented in other scales (e.g. peer victimization, witnessing domestic violence). Second, using item response theory, the items in the MACE were carefully selected to measure maltreatment experiences of increasing severity in order to finely differentiate people with differing exposure levels. Third, the MACE also asks for the onset and duration of maltreatment experiences, which is necessary for investigating how the timing of abuse shapes development. Finally, the MACE was originally developed to provide two measures: a total score (number of overall maltreatment experiences) and a multiplicity score (number of types of maltreatment experienced). These scores have excellent temporal stability, convergent validity with other childhood maltreatment scales, and good predictive validity for a multitude of psychiatric symptoms \citep{teicher2015maltreatment}. For these reasons, the MACE has been included as among the best measures of childhood maltreatment currently available \citep{saini2019systematic, georgieva2022systematic}.
 
-In recent years, there have been calls for childhood maltreatment research to move away from the cumulative risk framework \citep{evans2013cumulative} --- which focuses only on the number of adverse experiences --- towards a dimensional approach, which emphasizes how distinct types of maltreatment uniquely shape developmental trajectories \citep{mclaughlin2016beyond, belsky2012beyond}. In response, some researchers have begun to use the MACE to make new indices of maltreatment in lieu of, or in addition to, the total and multiplicity scores. For example, some researchers have used all 10 MACE subscale scores to study the unique contributions of each type of maltreatment to the development of psychopathology \citep{schalinski2015type, gerke2018childhood, schalinski2019early}. Citing a prominent dimensional model of maltreatment \citep{mclaughlin2014childhood}, others have made novel threat and deprivation subscale scores made up of items in the MACE that measure abuse and neglect experiences, respectively \citep{schalinski2018defining, schalinski2019environmental, teicher2018differential}. The psychometric properties of these subscale scores have not been thoroughly investigated.   
+In recent years, there have been calls for childhood maltreatment research to move away from the cumulative risk framework \citep{evans2013cumulative} --- which focuses only on the number of adverse experiences --- towards a dimensional approach, which emphasizes how distinct types of maltreatment uniquely shape developmental trajectories \citep{mclaughlin2016beyond, belsky2012beyond}. In response, some researchers have begun to use the MACE to make new indices of maltreatment in lieu of, or in addition to, the total and multiplicity scores. For example, some researchers have used all 10 MACE subscale scores to study the unique contributions of each type of maltreatment to the development of psychopathology \citep{schalinski2015type, gerke2018childhood, schalinski2019early}. Citing a prominent dimensional model of maltreatment \citep{mclaughlin2014childhood}, others have made novel threat and deprivation subscale scores made up of items in the MACE that measure abuse and neglect experiences, respectively \citep{schalinski2018defining, schalinski2019environmental, teicher2018differential}. However, the psychometric properties of these subscale scores have not been thoroughly investigated.   
 
 A critical challenge in studying the consequences of childhood maltreatment is the high co-occurrence of these adverse experiences. That is, children who have experienced any single type of maltreatment are likely to have experienced multiple other types \citep{dong2004interrelatedness, herrenkohl2009assessing, kessler2010childhood}. As such, isolating the unique contribution of one type of maltreatment to an outcome is difficult insofar as any one type of adversity is likely confounded with overall maltreatment. Concretely, this means that researchers intending to study the sequela of particular types of maltreatment using subscale scores need to verify that those scores actually reflect a construct unique from overall maltreatment, lest they risk drawing spurious conclusions.
 
@@ -153,7 +177,7 @@ Structurally-dependent or redundant items can cause serious problems for item fa
 
 \subsection{Confirmatory item factor models}
 
-To investigate the factor structure of the MACE, we fit a series of four confirmatory item factor models separately to the response data from each sample.\footnote{The suitability of common factor models (CFMs) with reflective indicators for explaining childhood maltreatment data has been contested. For interested readers, we justify our use of CFMs to explain responses to the MACE in the supplement.} The basis of each model is the graded response model for ordered polytomous data \citep{samejima1997graded}. The factor structure for each model is depicted in Figure \ref{fig:models}. The first is a one-factor (undimensional) model where all items load onto a general maltreatment factor (Figure \ref{fig:models}a). The second is a bifactor model where all items load onto a general maltreatment factor and also one of 10 specific factors based on their subscale membership (Figure \ref{fig:models}b). This model will be used to evaluate if the MACE can produce reliable subscale scores for each of the 10 types of maltreatment assessed by the MACE. 
+To investigate the factor structure of the MACE, we fit a series of four confirmatory item factor models separately to the response data from each sample. (The suitability of common factor models (CFMs) with reflective indicators for explaining childhood maltreatment data has been contested. For interested readers, we justify our use of CFMs to explain responses to the MACE in the supplement.) The basis of each model is the graded response model for ordered polytomous data \citep{samejima1997graded}. The factor structure for each model is depicted in Figure \ref{fig:models}. The first is a one-factor (undimensional) model where all items load onto a general maltreatment factor (Figure \ref{fig:models}a). The second is a bifactor model where all items load onto a general maltreatment factor and also one of 10 specific factors based on their subscale membership (Figure \ref{fig:models}b). This model will be used to evaluate if the MACE can produce reliable subscale scores for each of the 10 types of maltreatment assessed by the MACE. 
 
 The third model was motivated by a dimensional theory of childhood maltreatment that distinguishes between threat and deprivation experiences as two distinct types of adversity \citep{mclaughlin2014childhood}. To examine this model of the MACE, we initially fit a bifactor model where all items loaded onto a general maltreatment factor, and also a threat or neglect specific factor. However, we observed vanishing item loadings on the threat specific factor. Therefore, we instead fit a bifactor S-1 model \citep{eid2017anomalous} where all items load onto a general maltreatment factor, and only items measuring neglect (i.e. items from the physical and emotional neglect subscales) load onto a specific neglect factor (Figure \ref{fig:models}c). We fit this model to see if the MACE can be used to form neglect subscale scores that are reliable and distinguishable from general maltreatment. 
 
@@ -331,7 +355,7 @@ Our results are also worth considering alongside previous studies that used MACE
 
 The current study revealed other features of the MACE worth highlighting. For example, we identified several sources of DIF in the MACE. We found that across samples women experienced more sexual abuse whereas men experienced more physical abuse by peers. These findings are in line with previous research \citep{radford2013prevalence}. We also identified a number of items with DIF by sample. The cause for this is unclear and may reflect differences in sample population (greater Boston area vs. US \& Canada), study location (in clinic vs. online), recruitment years (early 2010s vs. early 2020s), inclusion criteria (healthy \& unmedicated vs. none), and/or exclusion criteria (none vs. attention checks). The causes and impact of violations of measurement invariance on the MACE require further study. 
 
-We also identified a reverse-scored methods factor in the MACE. In our view, the most plausible explanation is that, under the \cite{teicher2015maltreatment} scoring procedure, affirmative responses on the regular and reverse-scored items on the MACE represent very different endorsements. For a regular item on the MACE, an endorsement indicates that a person experienced an adverse event during one year of childhood at least. In contrast, an endorsement on a reverse-scored item indicates that a person experienced experienced the absence of a positive event for all 18 years of childhood. However, alternative causes of the reverse-scored factor (e.g. participant confusion, acquiescence, or carelessness; \citealt{weijters2013reversed}) are possible. Additional research is needed to see if alternative scoring procedures would eliminate this factor. 
+We identified 12 item pairs and triplets in the MACE with response dependence; that is, sets of items where a response to one item requires or strongly implies a certain response to another. These items violate the local independence assumption of item response theory models and, in the present analyses, were therefore collapsed into polytomous items. However, future studies might consider abbreviating the MACE by removing some of these dependent or redundant items altogether (possibly without a significant loss of test information). We also identified a reverse-scored methods factor in the MACE. In our view, the most plausible explanation is that, under the \cite{teicher2015maltreatment} scoring procedure, affirmative responses on the regular and reverse-scored items on the MACE represent very different endorsements. For a regular item on the MACE, an endorsement indicates that a person experienced an adverse event during one year of childhood at least. In contrast, an endorsement on a reverse-scored item indicates that a person experienced the absence of a positive event for all 18 years of childhood. However, alternative causes of the reverse-scored factor (e.g. participant confusion, acquiescence, or carelessness; \citealt{weijters2013reversed}) are possible. Additional research is needed to see if alternative scoring procedures would eliminate this factor. 
 
 The current study is not without limitations. The most apparent limitation is that we only studied the dichotomous response data, but not the chronology data that is also collected as part of the MACE. Though we found that the factor structure of the endorsement responses is essentially unidimensional, this may belie more complex patterns present in the maltreatment chronology data. Indeed, longitudinal models of adverse events across childhood --- perhaps using dynamic factor analysis \citep{zhang2007bayesian} --- might be more sensitive to patterns of maltreatment covariation that are lost when collapsing the data into a dichotomous indicator of none vs. any maltreatment. Another possibility is to jointly model the MACE endorsement and chronology data using a multidimensional hurdle model \citep{magnus2021symptom}, which measures both a person's susceptibility to maltreatment (number of maltreatment experiences) and severity of maltreatment (duration of maltreatment experiences). Further research is needed to develop maltreatment scores that integrate the MACE endorsement and chronology data. 
 
